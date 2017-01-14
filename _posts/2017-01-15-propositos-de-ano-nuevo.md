@@ -8,12 +8,15 @@ image:
   feature: birthday-cake.png
   credit: adobewankenobi
   creditlink: https://www.vecteezy.com/vector-art/132130-free-vintage-hand-drawn-birthday-cake-background
+excerpt_separator: <!--more-->
 ---
 
 Desde que David empezara con su tradicional post de [propósitos de año nuevo](http://www.bonillaware.com/objetivos-para-2017) me ha taladrado cada año para que escribiera el mío, 
 aunque fuera en sus comentarios, pero por pereza siempre me he resistido. 
 
 Este año con más tiempo libre y en plena crisis de los 41, por fin me he decidido escribir mis propósitos de año nuevo, además en una fecha también simbólica: mi cumpleaños.
+
+<!--more-->
 
 ### 1.- Empezar mi blog
 Sí, en la era de Medium, newsletters, y podcasts, ¡estrenarme con un blog! Mega-early adopter! 20 años como usuario de internet y me decido ahora a contar mis tonterías... Debía ser el único que quedaba.
