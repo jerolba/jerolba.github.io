@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Propositos de año nuevo
-description: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
+description: "Propositos de año nuevo"
 modified: 2017-01-15
 tags: 
 image:
