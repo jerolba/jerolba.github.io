@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Propositos de año nuevo
-description: "Propositos de año nuevo"
+title: Propósitos de año nuevo
+description: "Propósitos de año nuevo"
 modified: 2017-01-15
 tags: 
 image:
