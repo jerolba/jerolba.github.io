@@ -10,7 +10,7 @@ image:
   layout: top
 excerpt_separator: <!--more-->
 ---
-TL;DR - A lo largo del post cuento mis impresiones después de probar el servicio de Google Cloud Functions, y hago público un servicio Rest alojado ahí que dice si un nombre es de hombre o de mujer.
+TL;DR - A lo largo del post cuento mis impresiones después de probar el servicio de Google Cloud Functions, y hago público un servicio Rest alojado allí, que dice si un nombre es de hombre o de mujer.
 
 ### La TarugoConf
 
@@ -30,7 +30,7 @@ Así que me descargo el excel y en una hora me monto un script en Java que me di
 
 ### Motivación
 
-Viendo el poco tiempo que me ha llevado y la fiabilidad del método, ¿por qué no llevarlo más allá? Estaría bien montar un servicio en la nube que proporcione un API parecida y publicarla en algún sitio, ¿no? Otra vez como buen técnico español que soy, **si me puede salir gratis mejor!**
+Viendo el poco tiempo que me ha llevado y la fiabilidad del método, ¿por qué no llevarlo más allá? Estaría bien montar un servicio en la nube que proporcione un API parecida y publicarla en algún sitio, ¿no? Otra vez como buen técnico español que soy, **si me puede salir gratis, mejor!**
 
 La semana pasada Google celebró en San Francisco por primera vez su conferencia sobre su nube: [Google Cloud Next 17](https://cloudnext.withgoogle.com/). Un megaevento donde [anunció](https://blog.google/topics/google-cloud/100-announcements-google-cloud-next-17/) un montón de tecnologías y proyectos. Entre ellos el lanzamiento de la Beta de [Cloud Functions](https://cloud.google.com/functions/) (el equivalente a [AWS Lambda](https://aws.amazon.com/es/lambda/details/) de Amazon).
 
@@ -57,9 +57,9 @@ Como quiero montar un API Rest, **sólo he probado la parte de *triggers* HTTP**
 
 Y alguno se preguntará: ¿y sobre qué plataforma o lenguaje se montan las funciones? Pues, sí como habéis leído, sobre mi querido Node.js :)
 
-En la documentación ni en ningún post hablan si darán soporte a otras plataformas o lenguajes, pero es de esperar que sí, si quieren hacerle sombra a AWS Lambda.
+En la documentación ni en ningún post hablan de si darán soporte a otras plataformas o lenguajes, pero es de esperar que sí, si quieren hacerle sombra a AWS Lambda.
 
-Por lo que he podido leer en la documentación tu código se ejecuta sobre un Node.js usando una versión LTS (aunque no la última, ya que hablan de la v6.9.1 mientras que ahora está la 6.10.0). Supongo no podrás hacer ciertas cosas o acceder a algunos recursos, pero en la documentación no he sido capaz de encontrar nada sobre limitaciones.
+Por lo que he podido leer en la documentación tu código se ejecuta sobre un Node.js usando una versión LTS (aunque no la última, ya que hablan de la v6.9.1 mientras que ahora está la 6.10.0). Supongo no podrás hacer ciertas cosas o acceder a algunos recursos, pero en la documentación no he sido capaz de encontrar nada sobre limitaciones sobre cosas que no puedas hacer y que en un entorno Node JS normal sí puedas.
 
 ### Escribiendo el "Hola mundo"
 
@@ -75,7 +75,7 @@ exports.helloHttp = function helloHttp (req, res) {
 
 ¿Y qué información me llega en `req` y qué tengo que devolver en `res`? Pues parece que los ingenieros de Google no han reinventado la rueda y utilizan **Express 4**. Nos remiten a la documentación de [Request](http://expressjs.com/en/4x/api.html#req) y [Response](http://expressjs.com/en/4x/api.html#res) de Express.
 
-Cada método que expongas en el módulo será susceptible de convertirse en una función publicada (luego veremos más en la parte de despliegue). Por defecto, el nombre que pongas en el export será el path en el dominio de tu proyecto en Cloud Functions, y el *endpoint* final tendrá esta pinta:
+Cada método que expongas en el módulo será susceptible de convertirse en una función publicada (luego veremos más en la parte de despliegue). Por defecto, el nombre que pongas en el export será el path de la Url junto con en el subdominio de tu proyecto en Cloud Functions. El *endpoint* final tendrá esta pinta:
 
 `https://[YOUR_REGION]-[YOUR_PROJECT_ID].cloudfunctions.net/helloHttp`
 
@@ -113,17 +113,28 @@ Como podéis ver, puedes usar el API habitual de Express a la hora de devolver l
 
 Como aplicación Node.JS, te permite incluir tus dependencias dentro de `package.json` y descargarlas de `npm`. Supongo que la limitación de qué módulos puedes incluir vendrá dada por las propias limitaciones que imponga el *sandbox* donde se ejecutan las funciones.
 
-Puedes declarar tus propios módulos en local e importarlos con `require`, por lo que no será necesario que metas todo tu código en el fichero principal, y podrás utilizar todas las buenas prácticas de modularización de código.
+Puedes crear tus propios módulos en local e importarlos con `require`, por lo que no será necesario que metas todo tu código en el fichero principal, y podrás utilizar todas las buenas prácticas de modularización de código.
 
 ### Estado
 
 Se supone que como función no deberías tener estado, pero hay veces que necesitas precargar cierta información o configurar un comportamiento en función de algún fichero de propiedades.
 
-Todo el código que escribas además del `exports` de funciones se ejecuta cuando se carga tu función en el contenedor donde residirá, por lo que ahí puedes inicializar y cargar información según necesites. Eso sí, ni se te ocurra guardar información a reutilizar entre llamada y llamada, porque no sabes cuando se destruirá ese "contexto".
+```js
+cont foo = require('./foo');
 
-En pruebas manuales, he visto que esta información permanecia viva hasta una hora sin realizar ninguna llamada. En la documentación no se cuenta cuanto puede llegar a estar una instancia de una función levantada. Lo mejor es que trabajes con la idea de que con cada invocación a una función se instancia y mata un contexto.
+var fooInfo = {};
+foo.loadInfo((info) => fooInfo = info);
 
-En mi caso aprovecho la inicialización para cargar un fichero CSV con toda la información de nombres en un mapa de JS. Eso sí, ten cuidado porque si tu código de inicialización es asíncrono y lento, el `exports` se ejecutará antes de que termines y el *endpoint* estará disponible para invocación antes de que termines de configurarte. ¿Cómo resolverlo? No lo he pensado todavía. No tengo tanta experiencia en Node como para idear o conocer un patrón ya existente.
+exports.helloHttp = function helloHttp (req, res) {
+  res.send('Hello World! ' + fooInfo);
+};
+```
+
+Todo el código que escribas además del `exports` de las funciones se ejecuta cuando se carga tu función en el contenedor donde residirá, por lo que ahí puedes inicializar y cargar información según necesites. Eso sí, ni se te ocurra guardar información a reutilizar entre llamada y llamada, porque no sabes cuando se destruirá ese "contexto". Debes ser pesimista y pensar que se creará y destruirá en cada invocación, aunque luego por eficiencia ese estado sobreviva más tiempo por reutilizar el servidor el código ya cargado y preparado.
+
+En pruebas manuales, he visto que esta información permanecia viva hasta una hora sin realizar ninguna llamada. En la documentación no se cuenta cuanto puede llegar a estar una instancia de una función levantada, y sería un detalle de implementación que cambiará con el tiempo. Lo mejor es que trabajes con la idea de que con cada invocación a una función se instancia y mata un contexto.
+
+He investigado y contado todo esto porque en mi caso aprovecho la inicialización (como en el último ejemplo) para cargar un fichero CSV de **más de un megabyte** con toda la información de nombres en un mapa de JS, y no me apetecía cargarlo en cada llamada a la función. Eso sí, ten cuidado porque, como es mi caso, si tu código de inicialización es asíncrono, el `exports` se ejecutará antes de que termines y el *endpoint* estará disponible para su invocación antes de que termines de configurarte. ¿Cómo resolverlo? No lo he pensado todavía. No tengo tanta experiencia en Node como para idear o conocer un patrón ya existente.
 
 ### CORS
 
@@ -263,9 +274,13 @@ Según la [documentación](https://cloud.google.com/functions/quotas) puedes ten
 
 ### Conclusión
 
+Cuando me enfrento a una nueva tecnología, a parte de entender cómo es a nivel funcional (qué hace, cómo se usa o gestiona), como técnico me gusta conocer cómo funciona por debajo, y por eso puede que haya tratado temas tan extraños como el estado o la concurrencia.
+
 Mi impresión particular es que a nivel de HTTP por ahora está bien para montar servicios *de juguete* (más estando en fase Beta), principalmente debido al poco control que tienes sobre la exposición de tu API y su uso. En cosas serias se debería complementar con un API Gateway.
 
 En la parte de funciones *Background* me parece una buena opción si ya estás metido en la nube de Google y necesitas hacer ciertas tareas de forma asíncrona y con facilidad de escalar los recursos rápidamente sin preocuparte de su gestión.
+
+Si la carga que va a soportar el sistema es muy alta, es probable que tengas que [echar cuentas](https://cloud.google.com/products/calculator/) para saber si te merece la pena usar un sistema como éste o gestionar tú las máquinas completas, utilizando igualmente todos los mecanismos de autoescalado que ofrezca tu plataforma.
 
 Por último recordar que este servicio no tiene ningún tipo de API estándar, y cualquier cosa que desarrolles sobre esta plataforma será difícil de mover a otro proveedor.
 
