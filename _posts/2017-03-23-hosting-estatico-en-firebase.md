@@ -12,7 +12,7 @@ image:
 excerpt_separator: <!--more-->
 ---
 
-Explorando la idea de hacer una aplicación *Serverless*, además de montar el API, me he animado a hacer una [web sencilla](hombre-o-mujer.jerolba.com) que haga uso del API que he creado para averiguar el nombre de una persona según su nombre.
+Explorando la idea de hacer una aplicación *Serverless*, además de montar el API, me he animado a hacer una [web sencilla](https://hombre-o-mujer.jerolba.com) que haga uso del API que he creado para averiguar el nombre de una persona según su nombre.
 
 Existen múltiples sitios donde alojar una web estática, siendo [GitHub Pages](https://pages.github.com/) una de las opciones que más de moda se han puesto entre la comunidad de desarrolladores para publicar la web de proyectos *open source* o el blog personal. 
 
