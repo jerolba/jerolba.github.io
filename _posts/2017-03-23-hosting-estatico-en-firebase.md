@@ -14,7 +14,7 @@ excerpt_separator: <!--more-->
 
 Explorando la idea de hacer una aplicación *Serverless*, además de montar el API, me he animado a hacer una [web sencilla](https://hombre-o-mujer.jerolba.com) que haga uso del API que he creado para averiguar el nombre de una persona según su nombre.
 
-Existen múltiples sitios donde alojar una web estática, siendo [GitHub Pages](https://pages.github.com/) una de las opciones que más de moda se han puesto entre la comunidad de desarrolladores para publicar la web de proyectos *open source* o el blog personal. 
+Existen múltiples sitios donde alojar una web estática, siendo [GitHub Pages](https://pages.github.com/) una de las opciones que más de moda se ha puesto entre la comunidad de desarrolladores para publicar la web de proyectos *open source* o el blog personal. 
 
 Pero tiene un pequeño inconveniente: solo puedes tener un dominio personalizado por cuenta de GitHub, y el de mi cuenta está con este blog (o yo no he sabido encontrar la opción).
 
@@ -28,7 +28,7 @@ Firebase nació en 2011 como un *Backend as a Service* para aplicaciones móvile
 
 Sus principales servicios son:
 
-* Servicio notificaciones push a móvil y mensajería
+* Servicio de notificaciones push a móvil y mensajería
 * Autenticación en los principales servicios OAuth (Google, Twitter, FaceBook o GitHub)
 * Base de datos NoSQL (es decir, JSON) que autosincroniza los datos entre el servidor y los dispositivos
 * Almacenamiento de ficheros, apoyándose en [Cloud Storage](https://cloud.google.com/storage/)
@@ -79,7 +79,7 @@ Con eso ya tendremos todo listo para iniciar el proyecto con la orden:
 $ firebase init
 ```
 
-donde nos sacará un *wizzard* en modo texto bastante currado con *checkboxes* para elegir opciones y navegar con los cursores. En este caso solo seleccionaré Hosting:
+donde nos sacará un *wizard* en modo texto bastante currado con *checkboxes* para elegir opciones y navegar con los cursores. En este caso solo seleccionaré Hosting:
 
 <img src="/images/FirebaseMenu.png"/>
 
@@ -126,7 +126,7 @@ Si vieras que la has cagado en el despliegue y necesitaras deshacer un cambio, e
 
 ### Dominio personalizado
 
-Desde el panel de administración web puedes [gestionar el dominio](https://firebase.google.com/docs/hosting/custom-domain) final de la web. Una vez que les dices qué dominio quieres usar te pedirán **verificar la propiedad del dominio** creando un registro `TXT` en tu archivo de zona DNS. Un vez verificado te darán dos direcciones IP que asociar a dos registros `A` del DNS.
+Desde el panel de administración web puedes [gestionar el dominio](https://firebase.google.com/docs/hosting/custom-domain) final de la web. Una vez que le dices qué dominio quieres usar te pedirán **verificar la propiedad del dominio** creando un registro `TXT` en tu archivo de zona DNS. Un vez verificado te darán dos direcciones IP que asociar a dos registros `A` del DNS.
 
 Todo este proceso de modificación de los registros del DNS dependerá de donde tengas alojado el DNS, pero suele ser bastante sencillo.
 
