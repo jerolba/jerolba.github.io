@@ -5,6 +5,7 @@ description: "Propósitos de año nuevo"
 modified: 2017-01-15
 tags: 
 image:
+  path: images/birthday-cake.png
   feature: birthday-cake.png
   credit: adobewankenobi
   creditlink: https://www.vecteezy.com/vector-art/132130-free-vintage-hand-drawn-birthday-cake-background

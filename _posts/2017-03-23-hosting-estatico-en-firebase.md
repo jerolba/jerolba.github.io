@@ -5,6 +5,7 @@ description: "Desplegando un sitio estático en Firebase"
 modified: 2017-03-23
 tags: 
 image:
+  path: images/google-datacenter.jpg
   feature: google-datacenter.jpg
   credit: Google
   creditlink: https://www.google.com/about/datacenters/

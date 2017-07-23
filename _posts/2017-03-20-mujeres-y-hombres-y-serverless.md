@@ -5,6 +5,7 @@ description: "Construyendo una aplicación serverless con Google Cloud Functions
 modified: 2017-03-20
 tags: 
 image:
+  path: images/mujeres-hombres-viceversa.jpg
   feature: mujeres-hombres-viceversa.jpg
   credit: Tele5
   layout: top
