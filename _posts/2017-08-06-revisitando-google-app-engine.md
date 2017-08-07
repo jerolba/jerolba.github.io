@@ -63,7 +63,7 @@ Todo lo relativo a la base de datos merecería un capítulo aparte y es donde se
 
 Desde finales de 2011 todos estos problemas con la base de datos pueden salvarse mediante el uso de una instancia externa de [Google Cloud SQL](https://cloud.google.com/sql/) a donde conectar tus instancias de App Engine. Es una base de datos con la interfaz de MySql, donde ya entras en el modelo de pagar por una instancia reservada, la uses constantemente o no, y un coste proporcional a su tamaño.
 
-Ningúno de estos "problemas" supone un problema real o un impedimieto insalvable a la hora de hacer una aplicación, y en determinadas circunstancias puede compensar. Pero si lo que te falta es tiempo para hacer las cosas, tener que buscar soluciones a estos problemas que resuelven un problema que no tienes, posiblemente no sea la mejor estratégia.
+Ningúno de estos "problemas" supone un problema real o un impedimieto insalvable a la hora de hacer una aplicación, y en determinadas circunstancias puede compensar. Pero si lo que te falta es tiempo para hacer las cosas, tener que buscar soluciones a estos problemas que resuelven un problema que no tienes, posiblemente no sea la mejor estrategia.
 
 Todo esto es una recopilación de problemas que he visto, y **puede que alguno se haya ido solventando según fueran sacando nuevas versiones de la plataforma**. Pero persiste la sensación general de ser una plataforma con demasiadas restricciones.
 
