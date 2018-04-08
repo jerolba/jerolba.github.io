@@ -3,6 +3,7 @@
    ========================================================================== */
 
 .dl-menuwrapper {
+	font-family: $heading-font;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -79,6 +80,8 @@
 		transform-style: preserve-3d;
 	}
 
+	$dl_menu-size: 16;
+
 	li {
 		position: relative;
 
@@ -86,19 +89,20 @@
 			margin:0;
 			padding: 15px 20px 0;
 			color: rgba(#fff,0.9);
+			font-size: 16px;
 		}
 
 		p {
 			margin: 0;
 			padding: 15px 20px;
-			@include font-rem(14);
+			@include font-rem($dl_menu-size);
 			color: rgba(#fff,0.8);
 			font-weight: 300;
 
 			a {
 				display: inline;
 				padding: 0;
-				@include font-rem(14);
+				@include font-rem($dl_menu-size);
 			}
 		}
 
@@ -106,8 +110,8 @@
 			display: block;
 			position: relative;
 			padding: 15px 20px;
-			@include font-rem(14);
-			line-height: 20px;
+			@include font-rem($dl_menu-size);
+			line-height: 18px;
 			font-weight: 400;
 			color: #fff;
 			outline: none;
@@ -150,7 +154,7 @@
 		width: 100%;
 		max-height: 90%;
 		overflow-y: auto;
-	  overflow-x: hidden;
+	    overflow-x: hidden;
 		opacity: 0;
 		pointer-events: none;
 		box-shadow: 0 12px 24px rgba(#000,0.4);

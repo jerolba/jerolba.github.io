@@ -13,14 +13,14 @@ $front-page-feature-image-height : 400px; // min 150px recommended
    Typography
    ========================================================================== */
 
-$base-font                       : 'Lato', Calibri, Arial, sans-serif;
-$heading-font                    : $base-font;
+$base-font                       : Georgia, Cambria, "Times New Roman", Times, "Lora", serif;
+$heading-font                    : "Helvetica Neue", "Open Sans", Arial, Helvetica, sans-serif;
 $caption-font                    : $base-font;
 $code-font                       : monospace;
 $alt-font                        : serif;
 
-$doc-font-size                   : 16;
-$doc-line-height                 : 26;
+$doc-font-size                   : 20;
+$doc-line-height                 : 38;
 
 
 // set-up the body font-size / line-height
@@ -33,14 +33,14 @@ body {
    Colors
    ========================================================================== */
 
-$base-color                      : rgba(#222,0.8);
+$base-color                      : #333333;
 $body-color                      : #e8e8e8;
-$text-color                      : rgba(#222,0.8);
-$comp-color                      : complement(#222);
+$text-color                      : #333333;
+$comp-color                      : complement(#222222);
 $border-color                    : lighten($base-color,60);
-$link-color                      : rgba(#222,0.8);
+$link-color                      : #333333;
 
-$primary                         : #222;
+$primary                         : #333333;
 $success                         : #5cb85c;
 $warning                         : #dd8338;
 $danger                          : #C64537;

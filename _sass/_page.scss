@@ -23,7 +23,7 @@ body {
 }
 
 .entry-content {
-	@include font-size(16);
+	@include font-size(24);
 
 	// Dotted line underlines for links
 	p > a,
@@ -62,7 +62,7 @@ body {
 
 	h1 {
 		margin: 10px 20px;
-		font-weight: 700;
+		font-weight: 500;
 		@include font-rem(32);
 		color: lighten($base-color,20);
 
@@ -302,7 +302,7 @@ header .entry-meta {
 #page {
 
 	.entry-content {
-		margin: 40px 2px 20px 2px;
+		margin: 0px 0px 20px 0px;
 		padding: 10px 15px;
 		background-color: #fff;
 		box-shadow: 0 0 0 0, 0 6px 12px rgba(#000,0.1);
@@ -317,11 +317,11 @@ header .entry-meta {
 		@media #{$large} {
 			max-width: 800px;
 			margin: 50px auto 30px auto;
-			padding: 50px 80px;
+			padding: 50px 60px;
 
-			> p:first-child {
+			/*> p:first-child {
 				@include font-size(20);
-			}
+			}*/
 		}
 	}
 
