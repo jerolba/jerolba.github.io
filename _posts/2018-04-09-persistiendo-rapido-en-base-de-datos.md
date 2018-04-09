@@ -40,7 +40,7 @@ En el proceso iré poniendo código desde la versión más sencilla y lenta, has
 
 Además pongo la restricción de **no poder hacer todo el proceso en una única transacción**. Es necesario hacer la persistencia en múltiples commits, para no perder potencialmente información y para no agobiar a la base de datos con una transacción muy larga.
 
-Para ver qué efecto tiene cada cambio según el motor de base de datos, tomaré métricas sobre las dos bases de datos _open source_ más populares: **MySql y Postgres**. No es objetivo del post hacer una comparativa y descubrir qué base de datos es más rápida, aunque todo el mundo sabe cual es mejor :D
+Para ver qué efecto tiene cada cambio según el motor de base de datos, tomaré métricas sobre las dos bases de datos _open source_ más populares: **MySQL y Postgres**. No es objetivo del post hacer una comparativa y descubrir qué base de datos es más rápida, aunque todo el mundo sabe cual es mejor :D
 
 ## Mediante JPA
 
@@ -122,17 +122,17 @@ Hemos mejorado en torno a un 2X el rendimiento, y seguramente habremos evitado a
 
 Hasta ahora he podido dar a entender que las operaciones contra base de datos se realizan por cada llamada al método `entityManager.persist(iterator.next())`. Pero no es así cómo funciona JPA.
 
-JPA implementa el patrón de diseño de [_Unit of work_](https://martinfowler.com/eaaCatalog/unitOfWork.html), y almacena en el EntityManager los objetos nuevos, borrados y modificados, y él es quien decide cuándo tiene que realizar las operaciones contra base de datos.
+JPA implementa el patrón de diseño de [_Unit of work_](https://martinfowler.com/eaaCatalog/unitOfWork.html), y almacena en el EntityManager los objetos nuevos, borrados y modificados, y él es quien decide cuando tiene que realizar las operaciones contra base de datos.
 
 Se encarga de mantener un estado consistente de los cambios que has realizado, y si en una consulta le pides un objeto que has modificado en una operación anterior, ya se preocupa de devolvértelo aunque no se haya hecho todavía el update en la base de datos. Es parte de la magia y complejidad de un ORM.
 
-Por tanto en vez de enviar las operaciones de inserción una a una según vas llamándole, **Hibernate las acumula y las ejecuta todas** en una sucesión de llamadas a la base de datos.
+Por tanto, en vez de enviar las operaciones de inserción una a una según vas llamándole, **Hibernate las acumula y las ejecuta todas** en una sucesión de llamadas a la base de datos.
 
 Pero en vez de hacer un viaje a la base de datos por insert asociado a cada nuevo objeto creado, podemos decirle a Hibernate que los agrupe en _batches_  modificando el parámetro de configuración de `hibernate.jdbc.batch_size`. De esta forma sólo hará un viaje a la base de datos con todas las órdenes de inserción.
 
 Para que nuestro proceso sea óptimo, sólo tenemos que preocuparnos de hacer que el valor del parámetro de `batch_size` coincida con el número de elementos que hayamos elegido para hacer el flush, si no estará desincronizado cada vez que hagamos flush con el número de elementos sobre los que hacer el batch.
 
-**[Vlad Mihalcea](https://twitter.com/vlad_mihalcea) lo explica mejor que yo en [este magnífico post](https://vladmihalcea.com/the-best-way-to-do-batch-processing-with-jpa-and-hibernate/)** (no os perdáis su blog y su libro si os interesan los temas de persistencia de base de datos).
+[Vlad Mihalcea](https://twitter.com/vlad_mihalcea) lo explica mejor que yo en [este magnífico post](https://vladmihalcea.com/the-best-way-to-do-batch-processing-with-jpa-and-hibernate/) (no os perdáis su blog y su libro si os interesan los temas de persistencia de base de datos).
 
 Si revisamos el código que tenemos hasta ahora vemos que coincide con lo que escribe Vlad, y lo único que tenemos que hacer es añadir la propiedad de `batch_size` en la configuración de Hibernate (en tu código probablemente vaya en un fichero XML o de properties):
 
@@ -149,7 +149,7 @@ EntityManagerFactoryFactory factory = new EntityManagerFactoryFactory(dsFactory,
 
 [<img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=463427836&amp;format=image"/>](https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=463427836&format=interactive)
 
-Si comparamos con la versión anterior, vemos que no ha habido ninguna mejora de rendimiento, e incluso empeorado ligeramente. ¿Nos estará engañando Vlad?
+Si comparamos los resultados con la versión anterior, vemos que no ha habido ninguna mejora de rendimiento, e incluso empeorado ligeramente. ¿Nos estará engañando Vlad?
 
 No, no nos ha engañado, su ejemplo es más sencillo y no nos ha contado un pequeño detalle sobre **la clave primaria**.
 
@@ -210,9 +210,9 @@ tx.commit();
 
 [<img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=105187721&amp;format=image"/>](https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=105187721&format=interactive)
 
-Aquí tenemos la primera gran diferencia entre MySql y Postgres: mientras que Postgres obtiene una mejora de 5X, en MySql es de solo 1.3X.
+Aquí tenemos la primera gran diferencia entre MySQL y Postgres: mientras que Postgres obtiene una mejora de 5X, en MySQL es de solo 1.3X.
 
-Está claro que Postgres gestiona mejor las operaciones batch que MySql, y por ahora no sé si será problema de la base de datos en sí o del driver JDBC. ¿Alguien en la "sala" que nos saque de dudas? Me lo apunto para investigar.
+Está claro que Postgres gestiona mejor las operaciones batch que MySQL, y por ahora no sé si será problema de la base de datos en sí o del driver JDBC. ¿Alguien en la "sala" que nos saque de dudas? Me lo apunto para investigar.
 
 ### 6.- Insert múltiple
 
@@ -237,13 +237,13 @@ Con esto, además de hacer un sólo viaje, le ahorramos trabajo a la base de dat
 
 Desgraciadamente Hibernate a pesar de saber eso, no generan ese tipo de querys.... tal vez porque sean unos vagos y delegan en el driver JDBC :)
 
-Tanto MySql como Postgres admiten configurar el driver para que cuando se encuentre un batch de inserts iguales en estructura, lo transforme en un único insert.
+Tanto MySQL como Postgres admiten configurar el driver para que cuando se encuentre un batch de inserts iguales en estructura, lo transforme en un único insert.
 
-La activación se hace a nivel de URL como un parámetro más de la conexión, siendo en MySql el parámetro `rewriteBatchedStatements` y en Postgres el parámetro `reWriteBatchedInserts`. No es necesario modificar el código, sólo la conexión a base de datos.
+La activación se hace a nivel de URL como un parámetro más de la conexión, siendo en MySQL el parámetro `rewriteBatchedStatements` y en Postgres el parámetro `reWriteBatchedInserts`. No es necesario modificar el código, sólo la conexión a base de datos.
 
 [<img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=144879728&amp;format=image"/>](https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=144879728&format=image)
 
-Este cambio nos ha traído entre un 1.5X y un 4X de rendimiento, dejando a MySql a un nivel más razonable respecto a Postgres.
+Este cambio nos ha traído entre un 1.5X y un 4X de rendimiento, dejando a MySQL a un nivel más razonable respecto a Postgres.
 
 ### ¿Siguiente paso?
 
@@ -265,16 +265,16 @@ Hemos visto cómo mejorar el rendimiento de tu sistema es bastante sencillo y no
 
 #### Setup del benchmark
 
-Cualquier benckmark que se precie y quiera ser tenido en cuenta debe especificar su configuración. La metodología del benchmark no ha sido muy rigurosa, pero considero que lo suficiente como para sacar conclusiones de cada prueba realizada.
+Cualquier benchmark que se precie y quiera ser tenido en cuenta debe especificar su configuración. La metodología del benchmark no ha sido muy rigurosa, pero considero que lo suficiente como para sacar conclusiones de cada prueba realizada.
 
 Las pruebas las he hecho sobre un portátil Dell XPS 13 del 2017, con un procesador Core i7-7560U, con 16GB de memoria y disco SSD LiteOn CX2.
 
 Las versiones del software utilizado son:
 
-- MySql 5.6.35
+- MySQL 5.6.35
 - Postgres 9.6.8
 - Java 8u151
 
 En ningún caso he hecho ningún _tuneo_ del motor de base de datos y está con la configuración que trae por defecto al instalarse.
 
-En cada tests, he hecho 10 ejecuciones, descartando el mejor y peor resultado, y haciendo media de los 8 valores restantes.
+En cada tests, he hecho 10 ejecuciones, descartando el mejor y peor resultado, y hecho la media de los 8 valores restantes.
