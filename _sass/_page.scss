@@ -27,6 +27,7 @@ body {
 
 	// Dotted line underlines for links
 	p > a,
+	p > strong > a,
 	li > a {
 		border-bottom: 1px dotted lighten($link-color, 50);
 
