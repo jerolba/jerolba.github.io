@@ -245,7 +245,7 @@ Es decir, **el 99,93% de las veces cualquier combinación de un producto y una t
 
 ¿Qué consecuencias tiene esto?
 
-- Deja de comportarse como un HashMap y se parece más en a un árbol
+- Deja de comportarse como un HashMap y se parece más a un árbol
 - La estructura en árbol consume más memoria
 - Hace un uso intensivo de la función `equals` de la clave
 
