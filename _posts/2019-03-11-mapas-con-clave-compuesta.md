@@ -19,6 +19,8 @@ Siguiendo con el mismo ejemplo hablaré de productos y tiendas, y usaré sus ide
 - Un único mapa con una clave que contenga sus índices:  `HashMap<Tuple<Integer, Integer>, MyObject>`, al que llamaré TupleMap.
 - Un mapa anidado: `HashMap<Integer, HashMap<Integer, MyObject>>`, al que llamaré DoubleMap.
 
+<!--more-->
+
 Para salir de dudas y sacar conclusiones mediré:
 
 - La memoria consumida al indexar una colección de objetos
