@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mapas con clave compuesta"
-description: "¿Qué estructura de datos es mejor para guardar de forma indexada un objeto con clave compuesta? ¿Es mejor un Map<Tuple<A,B>, Object> o un Map<A, Map<B,Object>>?"
+description: "¿Qué estructura de datos es mejor para guardar de forma indexada un objeto con clave compuesta? ¿Es mejor un Map<Tuple<A,B>, Object> o un Map<A,Map<B,Object>>?"
 modified: 2019-03-11
 tags: 
 image:
@@ -36,7 +36,7 @@ Para salir de dudas y sacar conclusiones mediré:
 
 Todo el código fuente necesario para reproducir las pruebas está en este repositorio de GitHub: [https://github.com/jerolba/hashcode-map](https://github.com/jerolba/hashcode-map).
 
-En este caso aplicaré la función hash que genera menor número de colisiones y minimiza el consumo de memoria, por lo que no me tendré que preocupar de esa parte en mis *benchmarks* y estaré en un caso optimo (y optimista) en la versión de TupleMap al no tener que lidiar con las colisiones.
+En este caso aplicaré la función hash que genera menor número de colisiones y minimiza el consumo de memoria, por lo que no me tendré que preocupar de esa parte en mis *benchmarks* y estaré en un caso optimo (y optimista) en la versión de TupleMap de no tener que lidiar con las colisiones.
 
 ## Consumo de memoria
 
@@ -49,7 +49,7 @@ Si rellenamos de forma aleatoria un mapa con 10.000 productos y 500 tiendas, obt
 
 De media, el mapa con un objeto clave (Tuple) consume un 50% más de memoria, ocupando finalmente 299 MB frente a los 193 MB del DoubleMap.
 
-Mirando el histograma de los objetos en memoria vemos que las instancias de la clase Tuple están ocupando 114 MB y no se están produciendo colisiones al no aparecer instancias del tipo TreeMap.
+Mirando el histograma de los objetos en memoria vemos que las instancias de la clase Tuple están ocupando 114 MB y no se están produciendo colisiones al no aparecer instancias del tipo TreeMap:
 
 <table class="table-histogram">
 <tbody>
@@ -62,7 +62,7 @@ Mirando el histograma de los objetos en memoria vemos que las instancias de la c
 </tbody>
 </table>
 
-Mientras que en la versión de DoubleMap las instancias de HashMap extra están ocupando apenas medio megabyte, y la mayor diferencia radica en el espacio empleado en los arrays de nodos:
+mientras que en la versión de DoubleMap las instancias de HashMap extra están ocupando apenas medio megabyte, y la mayor diferencia radica en el espacio empleado en los arrays de nodos:
 
 <table class="table-histogram">
 <tbody>
@@ -138,7 +138,7 @@ Usando DoubleMap nos olvidamos del problema de tener que [elegir una función ha
 
 ## Resultados de los *benchmarks*
 
-El código fuente para ejecutar los *benchmarks* están en el [repositorio de GitHub](https://github.com/jerolba/hashcode-map), pero para que podáis ver los datos de las gráficas en crudo os copio los resultados y así podéis hacer vuestros análisis y sacar vuestras conclusiones.
+El código fuente para ejecutar los *benchmarks* están en el [repositorio de GitHub](https://github.com/jerolba/hashcode-map), pero para que podáis ver los datos de las gráficas en crudo os copio los resultados. Así además podéis hacer vuestros análisis y sacar vuestras conclusiones.
 
 **Indexación**
 
