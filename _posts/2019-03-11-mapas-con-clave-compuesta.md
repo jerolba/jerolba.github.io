@@ -132,7 +132,7 @@ A pesar de los resultados obtenidos, en este caso considero que es difícil saca
 
 En código de producción, entre acceso y acceso al mapa, tu aplicación puede hacer muchas cosas que influyan en la disponibilidad de la información en las cachés, generando un patrón de acceso complentamente distinto al del *benchmark*.
 
-Personalmente me quedo con la idea de consumir menos memoria no instanciando la clase Tuple y usar directamente HashMaps anidados.
+Personalmente me quedo con la idea de consumir menos memoria no instanciando la clase Tuple y usar directamente HashMaps anidados. Para evitar el código feo de tanto generico, puedes abstraer y encapsular ese código en una clase.
 
 Tener que **insertar/consultar en dos HashMaps parece que no supone un problema de rendimiento**, e incluso es más rápido, sobre todo en colecciones relativamente pequeñas.
 
