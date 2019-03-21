@@ -80,7 +80,7 @@ Los dos comandos son equivalentes y generan el mismo resultado en un "hola mundo
   15:           85          6120  java.lang.reflect.Field
   16:          126          6048  java.util.HashMap
   17:           69          5520  java.lang.reflect.Constructor
-  18            80          5120  java.net.URL
+  18:           80          5120  java.net.URL
   19:          160          5120  sun.security.util.ObjectIdentifier
   20:          118          4720  java.lang.ref.SoftReference
   ...          ...         .....  
