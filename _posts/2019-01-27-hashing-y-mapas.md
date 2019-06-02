@@ -109,7 +109,7 @@ Os invito a realizar la [misma prueba en JavaScript](https://codepen.io/anon/pen
 
 ## La función hash
 
-Para este ejemplo he dejado como función hash el código que me autogenera el IDE, que hace uso de la versión propuesta por Java. Aunque hubiera sido incluso mejor y más sencillo haber devuelvo el valor de `id` directamente.
+Para este ejemplo he dejado como función hash el código que me autogenera el IDE, que hace uso de la versión propuesta por Java. Aunque hubiera sido incluso mejor y más sencillo haber devuelto el valor de `id` directamente.
 
 El método llama a [este código](http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/be44bff34df4/src/share/classes/java/util/Arrays.java#l3915) sobre la clase `Arrays`, que es el estándar para calcular el hash de una clave compuesta:
 
@@ -296,7 +296,7 @@ Si el número de colisiones es muy alto, los elementos se concentrarán en unas 
     - 1.550.473 de ellas contiene elementos de tipo TreeNode
     - 65.557.895 de ellas están vacías, el 97,69% de las posiciones!!
 
-Tenemos que **el mapa ocupa 2,86 GB** de memoria, sin contar con el espacio empleado por las instancias que sirven de clave ni el valor asociado. En direccionamiento de **64 bits el mapa ocupa 5,34GB**, un 85% más. Esto pone el relieve que casi toda la información del TreeNode son punteros.
+Tenemos que **el mapa ocupa 2,86 GB** de memoria, sin contar con el espacio empleado por las instancias que sirven de clave ni el valor asociado. En direccionamiento de **64 bits el mapa ocupa 5,34GB**, un 85% más. Esto pone de relieve que casi toda la información del TreeNode son punteros.
 
 ### Consumo de CPU
 
