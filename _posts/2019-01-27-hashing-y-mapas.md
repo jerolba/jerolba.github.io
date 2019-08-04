@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hashing y mapas"
-description: "El cambio de una sóla línea de código relacionada con una función hash puede cambiar el rendimiento de una aplicación, tanto por consumo de CPU como de memoria"
+description: "El cambio de una sola línea de código relacionada con una función hash puede cambiar el rendimiento de una aplicación, tanto por consumo de CPU como de memoria"
 modified: 2019-01-27
 tags: 
 image:
@@ -160,7 +160,7 @@ public class MyObject {
     }
 
     public MyObjectKey getKey() { return key; }
-    
+
     public String getSomeAttribute() { return someAttribute; }
 
     public int hashCode() { return key.hashCode(); }
