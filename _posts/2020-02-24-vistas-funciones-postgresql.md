@@ -153,7 +153,7 @@ Crear el nuevo modelo de tablas, cambiar la forma de persistir los datos y valid
 
 Cuando fui a validar con datos reales que todo seguía funcionando bien y me encontré esos tiempos de ejecución la decepción fue mayúscula... no me podía creer que las bases de datos en general y Postgres en particular no pudieran lidiar con un *pequeño cambio* y diera unos resultados desastrosos.
 
-Llegar hasta esta la solución correcta me costó bastante, porque en ninguna parte encontré (o no he sabido encontrar) nada que relacionara una penalización de rendimiento en el uso de vistas en combinación con funciones. ¿Es algo de primero de base de datos? ¿tú lo sabías antes de leer este post?
+Llegar hasta esta solución me costó bastante, porque en ninguna parte encontré (o no he sabido encontrar) nada que relacionara una penalización de rendimiento en el uso de vistas en combinación con funciones. ¿Es algo de primero de base de datos? ¿tú lo sabías antes de leer este post?
 
 Por fortuna no perdí la fe en las capacidades de Postgres, y releyendo la documentación sobre funciones y procedimientos di con el modificador y até cabos.
 
