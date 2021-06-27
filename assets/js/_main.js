@@ -25,7 +25,9 @@ $(".close-about").click(function () {
   $("#about").css('display','');
 });
 
-$(".entry-content a").attr('target', '_blank');
+//$(".entry-content a").attr('target', '_blank');
+
+$('.entry-content a[href^=http])').attr('target','_blank');
 
 
 /*!

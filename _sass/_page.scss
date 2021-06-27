@@ -316,9 +316,9 @@ header .entry-meta {
 		}
 
 		@media #{$large} {
-			max-width: 800px;
+			max-width: 900px;
 			margin: 50px auto 30px auto;
-			padding: 50px 60px;
+			padding: 50px 50px;
 
 			/*> p:first-child {
 				@include font-size(20);
@@ -340,7 +340,7 @@ header .entry-meta {
 		}
 
 		@media #{$large} {
-			max-width: 800px;
+			max-width: 900px;
 			padding: 50px 80px;
 			margin: 0 auto 30px auto;
 		}
@@ -403,7 +403,7 @@ header .entry-meta {
 	}
 
 	@media #{$large} {
-		max-width: 800px;
+		max-width: 900px;
 		padding: 50px 80px;
 		margin: 60px auto;
 	}
