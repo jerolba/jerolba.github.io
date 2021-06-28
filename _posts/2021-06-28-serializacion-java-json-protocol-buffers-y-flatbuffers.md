@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Serialización en Java con JSON, Protocol Buffers y Flat Buffers"
-description: "¿Cuánto cuesta serielizar y deserializar muchos datos en Java usando JSON, Protocol Buffers y Flat Buffers?"
+title: "Serialización en Java con JSON, Protocol Buffers y FlatBuffers"
+description: "¿Cuánto cuesta serielizar y deserializar muchos datos en Java usando JSON, Protocol Buffers y FlatBuffers?"
 modified: 2021-06-28
 tags: 
 image:
