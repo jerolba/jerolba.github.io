@@ -52,6 +52,8 @@ El soporte de diferentes lenguajes de programación viene dado por la existencia
 
 Google lo ha estandarizado y convertido en su mecanismo para la comunicación entre servidores [gRPC](https://grpc.io/), en vez del habitual REST con JSON.
 
+En la [documentación de Protocol Buffers](https://developers.google.com/protocol-buffers/docs/techniques#large-data) desaconsejan usarlo con mensajes muy grandes para comunicaciones, pero en mi caso, como quiero generar un fichero con todo el contenido serializado, voy a saltarme la recomendación.
+
 ### FlatBuffers
 
 [FlatBuffers](https://google.github.io/flatbuffers/) fue creado también dentro de Google en 2014 bajo licencia Apache 2.0. Se desarrolló para cubrir necesidades específicas dentro del mundo de los videojuegos y aplicaciones móviles, donde los recursos son más limitados.
@@ -218,7 +220,7 @@ table Organizations {
 root_type Organizations;
 ```
 
-Aquí es donde la cosa se pone complicada con FlatBuffers: es más complejo y no es automático. El proceso de serialización requiere de un **proceso manual** donde vas rellenando el *buffer* binario en memoria. 
+Aquí es donde la cosa se pone complicada con FlatBuffers: es más complejo y no es automático. La operación de serialización requiere de un **proceso manual** donde vas rellenando el *buffer* binario en memoria. 
 
 Según vas añadiendo elementos de tus estructuras de datos al *buffer*, te devuelve unos *offsets* o  **punteros**, que son los valores usados como referencias en las estructuras de datos que las contienen. Todo de forma recursiva. 
 
@@ -269,7 +271,7 @@ Como puedes ver, un código bastante feo y donde te puedes equivocar muy fácilm
 - Tamaño del fichero: 1 284 MB
 - Tamaño del fichero comprimido: 530 MB
 - Memoria necesaria: internamente crea un `ByteBuffer` que va creciendo con tamaño potencia de dos, así que para meter los 1,2 GB de datos, necesita reservar 2 GB de memoria, a menos que lo configures inicialmente los 1,2 GB si sabes su tamaño de antemano.
-- Tamaño librería (flatbuffers-java-1.12.0.jar):   64 873 bytes
+- Tamaño librería (flatbuffers-java-1.12.0.jar): 64 873 bytes
 - Tamaño clases generadas: 9 080 bytes
 
 ---
@@ -391,7 +393,8 @@ De los datos y de lo que he podido ver jugando con los formatos, podemos conclui
 - Por las pruebas que he hecho, Protocol Buffers ocupa menos espacio que FlatBuffers porque el *overhead* por estructura de datos (message/table) es menor, y sobre todo porque Protocol Buffers usa enteros de 32 bits para todos los tipos enteros (int, short, byte), pero al serializar **los representa con el valor que menos bytes ocupe**.
 - Por ese mismo motivo, cuando Protocol Buffers genera las clases a partir del IDL, lo define todo como **enteros de 32 bits** y deserializa los valores a int32.  Por eso el consumo de memoria de los objetos deserializados es un 23% mayor que el de JSON. Lo que gana comprimiendo enteros lo pierde en consumo de memoria.
 - Para los valores escalares, tanto Protocol Buffers como FlatBuffers **no admiten null**. Si un valor no está presente toma el valor por defecto del primitivo correspondiente (0, 0.0 o false). Los Strings en Protocol Buffers se deserializan a "", mientras que en FlatBuffers será `null`. No sé qué dicen las buenas prácticas, pero entiendo que si de verdad es importante saber si un valor es `null` deberás gestionarlo tú manualmente con un campo boolean asociado.
-- Aunque en el grafo de objetos original el nombre de los países o categorías en forma de `String` sólo estén en memoria una vez, al serializarse en el fichero aparecerá tantas veces como referencias tengas, y al deserializarse se crearán tantas instancias como referencias tuviera. Por eso en Protocol Buffers (y en JSON), la memoria consumida al deserializar **ocupa el doble de la memoria ocupada por los objetos creados originalmente para serializar**<a href="#1">*</a>.
+- Aunque en el grafo de objetos original el nombre de los países o categorías en forma de `String` sólo estén en memoria una vez, al serializarse en el fichero aparecerá tantas veces como referencias tengas, y al deserializarse se crearán tantas instancias como referencias tuviera. Por eso en Protocol Buffers (y en JSON), la memoria consumida al deserializar **ocupa el doble de la memoria ocupada por los objetos creados originalmente para serializar**<a href="#1"><sup>1</sup></a>.
+
 
 ---
 
@@ -402,7 +405,7 @@ La implementación de la serialización con FlatBuffers es realmente dura, pero 
 Cada vez que haces algo como esto: 
 
 ```java
-`int idOffset = builder.createString(attr.id());`
+int idOffset = builder.createString(attr.id());
 ```
 
 estás añadiendo al buffer una cadena de caracteres y obteniendo una especie de puntero u *offset* que usar en el objeto que la contiene.
@@ -451,7 +454,7 @@ try (var os = new FileOutputStream("/tmp/flatbuffer.json")) {
 - Tiempo de serialización: 3 803 ms
 - Tamaño del fichero: 600 MB
 - Tamaño del fichero comprimido: 414 MB
-- Memoria necesaria: para guardar esos 600 MB usará un `ByBuffer` que ocupará 1 GB si no lo preconfiguras.
+- Memoria necesaria: para guardar esos 600 MB usará un `ByteBuffer` que ocupará 1 GB si no lo preconfiguras.
 
 En este ejemplo sintético, **la reducción del tamaño del fichero llega a más del 50%**, y a pesar de tener que consultar constantemente a un mapa, el tiempo que tarda en serializar es sensiblemente menor.
 
