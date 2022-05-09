@@ -173,7 +173,7 @@ for (Org org : organizations) {
     orgsBuilder.addOrganizations(organizationBuilder.build());
 }
 Organizations orgsBuffer = orgsBuilder.build();
-try (var os = new FileOutputStream("/tmp/protobuffer.json")) {
+try (var os = new FileOutputStream("/tmp/organizations.protobuffer")) {
   orgsBuffer.writeTo(os);
 }
 ```
@@ -259,7 +259,7 @@ int organizationsOffset = Organizations.createOrganizationsVector(builder, orgsA
 int root_table = Organizations.createOrganizations(builder, organizationsOffset);
 builder.finish(root_table);
 
-try (var os = new FileOutputStream("/tmp/flatbuffer.json")) {
+try (var os = new FileOutputStream("/tmp/organizations.flatbuffers")) {
   InputStream sizedInputStream = builder.sizedInputStream();
   sizedInputStream.transferTo(os);
 }
