@@ -27,8 +27,8 @@ $(".close-about").click(function () {
 
 //$(".entry-content a").attr('target', '_blank');
 
-$('.entry-content a[href^=http])').attr('target','_blank');
-
+$('.entry-content a[href^=http]').attr('target','_blank');
+$(".entry-content a[href^='#']").removeAttr("target")
 
 /*!
  * jQuery Cookie Plugin v1.4.0
