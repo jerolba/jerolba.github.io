@@ -114,7 +114,7 @@ docker run --rm -v $(pwd)/src:/avro/src kpnnv/avro-tools:1.11.1 compile schema /
 
 ### Usando generación de código
 
-#### Serlialización
+#### Serialización
 
 Como Protocol Buffers, Avro no serializa directamente tus POJOs, y necesitas copiar la información a los objetos generados por el compilador de esquemas.
 
