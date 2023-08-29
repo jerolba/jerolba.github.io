@@ -42,53 +42,33 @@ El fichero con el esquema equivalente al ejemplo del anterior artículo sería [
 
 ```json
 {
-  "type": "record",
   "name": "Organization",
+  "type": "record",
   "namespace": "com.jerolba.xbuffers.avro",
   "fields": [
-    {
-      "name": "name",
-      "type": "string"
-    }, {
-      "name": "category",
-      "type": "string"
-    }, {
-      "name": "organizationType",
+    { "name": "name", "type": "string" }, 
+    { "name": "category", "type": "string"}, 
+    { "name": "organizationType",
       "type": {
         "type": "enum",
         "name": "OrganizationType",
         "symbols": ["FOO", "BAR", "BAZ"]
       }
-    }, {
-      "name": "country",
-      "type": "string"
-    }, {
-      "name": "attributes",
+    }, 
+    { "name": "country", "type": "string" }, 
+    { "name": "attributes",
       "type": {
         "type": "array",
         "items": {
           "type": "record",
           "name": "Attribute",
           "fields": [
-            {
-              "name": "id",
-              "type": "string"
-            }, {
-              "name": "quantity",
-              "type": "int"
-            }, {
-              "name": "amount",
-              "type": "int"
-            }, {
-              "name": "size",
-              "type": "int"
-            }, {
-              "name": "percent",
-              "type": "double"
-            }, {
-              "name": "active",
-              "type": "boolean"
-            }
+            { "name": "id", "type": "string" }, 
+            { "name": "quantity", "type": "int"}, 
+            { "name": "amount", "type": "int"}, 
+            { "name": "size", "type": "int"}, 
+            { "name": "percent", "type": "double"}, 
+            { "name": "active", "type": "boolean"}
           ]
         }
       }
@@ -150,7 +130,7 @@ try (var os = new FileOutputStream("/tmp/organizations.avro")) {
   dataFileWriter.close();
 }
 ```
-En vez de convertir toda la colección y luego persistirla, podemos convertir y persistir cada `Organization` uno por uno.
+En vez de convertir toda la colección y luego persistirla, podemos convertir y persistir cada `Organization` una por una.
 
 - Tiempo de serialización: 5 409 ms
 - Tamaño del fichero: 846 MB
