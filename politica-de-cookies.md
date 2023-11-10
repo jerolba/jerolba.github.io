@@ -1,10 +1,8 @@
 ---
-layout: legal-page
+layout: page
 title: Politica de cookies
 permalink: /politica-de-cookies/
-image:
-  feature: cookies.png
-comments: false
+subtitle: Why you'd want to go on a date with me
 ---
 #### Las Cookies, ¿qué son?
 

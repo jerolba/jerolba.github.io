@@ -76,7 +76,7 @@ layout: page
         {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
         {% assign excerpt_word_count = post.excerpt | number_of_words %}
         {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
-          <a href="{{ post.url | absolute_url }}" class="post-read-more">[Read&nbsp;More]</a>
+          <a href="{{ post.url | absolute_url }}" class="post-read-more">[Leer&nbsp;más]</a>
         {% endif %}
       </div>
       {% endunless %}
@@ -105,16 +105,16 @@ layout: page
   {% if paginator.previous_page %}
   <li class="page-item previous">
     <a class="page-link" href="{{ paginator.previous_page_path | absolute_url }}">
-      <i class="fas fa-arrow-left" alt="Newer Posts"></i>
-      <span class="d-none d-sm-inline-block">Newer Posts</span>
+      <i class="fas fa-arrow-left" alt="Newer Anteriores"></i>
+      <span class="d-none d-sm-inline-block">Posts Anteriores</span>
     </a>
   </li>
   {% endif %}
   {% if paginator.next_page %}
   <li class="page-item next">
     <a class="page-link" href="{{ paginator.next_page_path | absolute_url }}">
-      <span class="d-none d-sm-inline-block">Older Posts</span>
-      <i class="fas fa-arrow-right" alt="Older Posts"></i>
+      <span class="d-none d-sm-inline-block">Siguientes Posts</span>
+      <i class="fas fa-arrow-right" alt="Siguientes Posts"></i>
     </a>
   </li>
   {% endif %}
