@@ -3,7 +3,7 @@ layout: post
 title: Revisitando Google App Engine
 description: "A raíz de los recientes lanzamientos de Google sobre su servicio de App Engine decidí reevaluarlo 6 años después de mi última experiencia con él."
 modified: 2017-08-06
-tags: 
+tags:
 image:
   path: images/app-engine.png
   feature: app-engine.png
@@ -22,11 +22,11 @@ Si te da pereza leerte el ladrillaco vete a las [conclusiones](#conclusiones) :D
 
 Mi primer contacto con App Engine fue para hacer **una ridícula aplicación llamada [Pelotator](https://twitter.com/pelotator)**, ¡la primera tontería que hicimos juntos [David](https://twitter.com/david_bonilla) y yo! (el único rastro que ha quedado en internet fue [este post](http://elblogdedimco.blogspot.com.es/2011/09/pelotator-20.html)).
 
-<img src="/images/pelotator.jpg" class="mfp-img"/>
+![Pelotator](/images/pelotator.jpg){: .mx-auto.d-block :}
 
 En aquella época para un javero desplegar una aplicación en un servidor a **un precio asequible** era muy ~~complicado~~ caro, ya que los servidores VPS no salían de PHP, y no fue hasta ese año que Heroku [permitió desplegar aplicaciones Java]((https://www.wired.com/2012/09/heroku-enterprise-java/)) o al siguiente que salió un [Digital Ocean](https://en.wikipedia.org/wiki/DigitalOcean).
 
-Sobre el papel, App Engine tenía muy buena pinta, ya que Google había puesto a nuestra disposición la "misma" tecnología que manejaban ellos. Nos permitía escalar de forma "ilimitada" y transparente, sin tener que lidiar con ninguna infraestructura, ya que **es un PaaS** que ofrece entre otras cosas: 
+Sobre el papel, App Engine tenía muy buena pinta, ya que Google había puesto a nuestra disposición la "misma" tecnología que manejaban ellos. Nos permitía escalar de forma "ilimitada" y transparente, sin tener que lidiar con ninguna infraestructura, ya que **es un PaaS** que ofrece entre otras cosas:
  * Desplegar sobre un servidor de aplicaciones (Jetty)
  * Una base de datos, [Datastore](https://cloud.google.com/datastore/docs/concepts/overview)
  * Una instancia de Memcache
@@ -52,7 +52,7 @@ No sé en qué medida esa tecnología se parece en algo a lo que usaba Google pa
  * Los recursos de CPU asignados a cada instancia parece que son escasos y las peticiones se ejecutan más lentas de lo deseable, por lo que tienes que minimizar las cosas que haces en cada una y recurrir mucho a caché, tanto al Memcache disponible, como a la memoria local de la instancia.
  * Aunque permite escalar en instancias muy bien, parece que en cuanto lo haces a un gran número, de forma continua y muy habitual, es decir, que siempre tienes mucho tráfico, es muy caro.
 
-Todo lo relativo a la base de datos merecería un capítulo aparte y es donde se centran la mayoría de las quejas: 
+Todo lo relativo a la base de datos merecería un capítulo aparte y es donde se centran la mayoría de las quejas:
  * Datastore no es una base de datos relacional, sino que es una NoSql con un montón de [ventajas](https://cloud.google.com/datastore/docs/concepts/overview) a la hora de escalar, pero con muchas restricciones y cambios sobre la forma en la que estamos acostumbrados a trabajar.
  * En Java, para facilitar la adopción, hicieron una [implementación de JPA/JDO](https://cloud.google.com/appengine/docs/standard/java/datastore/jpa/overview), pero también llenas de limitaciones, y al final recomiendan usar [otra librería](https://github.com/objectify/objectify) que se adapta mejor a su API.
  * Por su modelo NoSql, no puedes hacer JOINs
@@ -81,7 +81,7 @@ Como podéis ver el panorama cambia un montón, y donde antes eran todo restricc
 
 Al igual que en la versión Standar, sigue permitiendo tener varias versiones desplegadas a la vez para hacer pruebas en paralelo, o [dividir el tráfico](https://cloud.google.com/appengine/docs/flexible/java/splitting-traffic) entre dos versiones para hacer Test A/B o [Canary Release](https://martinfowler.com/bliki/CanaryRelease.html)
 
-Google es el rey de la _containerización_ de aplicaciones y ya lo hacían mucho antes de que saliera Docker. Su plataforma [Borg](https://www.quora.com/What-is-Borg-at-Google) ha sido el gran secreto que ha sido celosamente guardado durante muchos años. Hasta la publicación de [este paper](https://research.google.com/pubs/pub43438.html) no se conocían sus detalles. 
+Google es el rey de la _containerización_ de aplicaciones y ya lo hacían mucho antes de que saliera Docker. Su plataforma [Borg](https://www.quora.com/What-is-Borg-at-Google) ha sido el gran secreto que ha sido celosamente guardado durante muchos años. Hasta la publicación de [este paper](https://research.google.com/pubs/pub43438.html) no se conocían sus detalles.
 
 La tecnología de contenedores ha permitido a Google crecer y escalar como lo ha hecho, y entiendo que la versión Standar de App Engine se ejecuta de alguna manera sobre esa infraestructura y sigue los patrones de sus contenedores. No ha sido hasta la popularización de Docker y todas sus tecnologías asociadas (como [Kubernetes](https://kubernetes.io/)), que no han decidido cambiar el sistema de contenedores a uno como Docker, permitiendo al usuario elegir si desplegar sobre un sistema u otro de forma sencilla.
 
@@ -91,7 +91,7 @@ Personalmente **habría lanzado comercialmente el nuevo App Engine Flexible Envi
 
 Vale, no puede ser todo tan bonito, ¿qué tiene de malo? Como muchas cosas en esa vida: el precio! **Desaparecen las cuotas y _free tiers_**, y desde el minuto cero de consumo te cobran, pero no precisamente algo barato: tener una instancia de un solo nodo de 1GB de memoria y con 1GB de disco sale por 43 dólares al mes!
 
-<img src="/images/AppEnginePricing.png" class="mfp-img"/>
+![Pricing AppEngine](/images/AppEnginePricing.png){: .mx-auto.d-block :}
 
 Para proyectos pequeños, si lo comparas con el tiempo (y dinero) que te lleva configurar y administrar una máquina, aún te puede salir rentable, pero en cuanto se incrementen tus requisitos de recursos me plantearía otro tipo de soluciones más económicas.
 
@@ -99,7 +99,7 @@ Para proyectos pequeños, si lo comparas con el tiempo (y dinero) que te lleva c
 
 Pero volvemos a lo que me trajo a este post: las novedades de la última versión del Standar Environment. La principal y más importante de todas es **el soporte de Java 8**! Aunque todavía la tienen en versión Beta las cuatro pruebas que he hecho yo me han ido bien....
 
-La verdad es que era difícil aceptar seguir trabajando con Java 7 cuando éste alcanzó el *End Of Life* en [abril del 2015](https://www.infoq.com/news/2015/05/Oracle-Ends-Java-7Public-Updates) y podíamos calificar a Java 8 como la versión con más mejoras de sintaxis desde Java 5. 
+La verdad es que era difícil aceptar seguir trabajando con Java 7 cuando éste alcanzó el *End Of Life* en [abril del 2015](https://www.infoq.com/news/2015/05/Oracle-Ends-Java-7Public-Updates) y podíamos calificar a Java 8 como la versión con más mejoras de sintaxis desde Java 5.
 
 Tener que renunciar a trabajar con Java 8 (a pesar de sus carencias como lenguaje moderno) era difícil de aceptar. No me quiero imaginar cómo debe estar de quemada la gente de Android, y eso explica porqué se van en masa hacia Kotlin.
 

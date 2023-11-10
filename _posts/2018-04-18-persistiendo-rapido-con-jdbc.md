@@ -3,7 +3,7 @@ layout: post
 title: "Persistiendo (rápido) en base de datos: JDBC"
 description: "Segundo capítulo de la serie de posts donde vemos cómo persistir información en base datos lo más rápido posible. Esta vez centrado directamente en JDBC."
 modified: 2018-04-18
-tags: 
+tags:
 image:
   path: images/willie-fineberg-44916-unsplash.jpg
   feature: willie-fineberg-44916-unsplash.jpg
@@ -168,4 +168,4 @@ La mejora es de entorno a un 50% y un 25%, y no es de un orden de magnitud como 
 
 Antes de tomar mis resultados como algo extrapolable a vuestro problema, os invito a que hagáis las pruebas con vuestros datos y saquéis conclusiones. Probablemente varíen, ya sea por la forma de los datos, la configuración del servidor o la simple latencia de red.
 
-**La configuración de estos benchmark es la misma que en [el último post](/persistiendo-rapido-en-base-de-datos/setup-del-benchmark).**
+**La configuración de estos benchmark es la misma que en [el último post](/persistiendo-rapido-en-base-de-datos#setup-del-benchmark).**

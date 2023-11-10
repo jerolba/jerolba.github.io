@@ -3,7 +3,7 @@ layout: post
 title: "Persistiendo muy rápido en base de datos: JFleet"
 description: "Último capítulo de la serie de posts donde vemos cómo persistir información en base datos lo más rápido posible. Además se presenta la herramienta JFleet"
 modified: 2018-05-05
-tags: 
+tags:
 image:
   path: images/PlanesFleet.jpg
   feature: PlanesFleet.jpg
@@ -149,7 +149,7 @@ Cuando hayamos llegado al tamaño correspondiente del batch, le pasamos el CSV m
 }
 ```
 
-El método guarda en una variable interna del objeto `Statement` el `InputStream` de donde leer el CSV a enviar a la base de datos. 
+El método guarda en una variable interna del objeto `Statement` el `InputStream` de donde leer el CSV a enviar a la base de datos.
 Como es información generada al vuelo, lo meto en un `InputStream` en memoria.
 
 Luego ejecutamos la sentencia de `LOAD DATA` como un _statement_ más, y la base de datos internamente nos responderá que necesita la información. El driver finalmente le enviará a la base de datos todo el contenido del `InputStream`.
@@ -215,7 +215,7 @@ Tras ejecutar el código (que tenéis disponible [aquí](https://github.com/jero
 
 [<img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=712589279&format=image"/>](https://docs.google.com/spreadsheets/d/e/2PACX-1vRA9shz0_mslFRyCpLqNMczi0e5G8_Lv_QW7BHs1JQhxWalXGCFernTnwjrcUkYXei-Wztj_CKJAEyr/pubchart?oid=712589279&format=interactive)
 
-¡Por primera vez superamos la barrera de los 50.000 registros por segundo! 
+¡Por primera vez superamos la barrera de los 50.000 registros por segundo!
 
 Pero para saber cuánto hemos conseguido mejorar, comparemos con los resultados de los post pasados:
 
@@ -241,7 +241,7 @@ También os recomiendo revisar vuestra configuración de la base de datos con al
 
 ## One more thing...
 
-<img src="/images/steve-jobs-one-more-thing.jpg"/>
+![Steve Jobs one more thing](/images/steve-jobs-one-more-thing.jpg){: .mx-auto.d-block :}
 
 Poder usar los comandos `LOAD DATA` y `COPY` está muy bien porque permite exprimir la última gota de rendimiento a la hora de persistir muchos datos, pero el ejemplo que os he puesto es sencillo para ilustrar cómo usarlo, y la cosa se complica si quieres usarlo bien.
 

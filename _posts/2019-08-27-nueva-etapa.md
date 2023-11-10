@@ -3,7 +3,7 @@ layout: post
 title: "Nueva etapa"
 description: "La semana pasada fue mi última semana en Nextail, la que ha sido mi casa durante los dos últimos años y medio."
 modified: 2019-08-27
-tags: 
+tags:
 image:
   path: images/NextailTeam.jpg
   feature: NextailTeam.jpg
@@ -54,30 +54,20 @@ Ha habido mucha gente con la que no he podido trabajar, pero otra mucha con la q
 
 La semana que viene empezaré en [Clarity](https://clarity.ai)
 
-![Logo de Clarity](/images/ClarityLogo.png)
+![Logo de Clarity](/images/ClarityLogo.png){: .mx-auto.d-block :}
 
 En un mundo global, deslocalizado, deforestado, calentado, automatizado, robotizado, desproporcionado, desequilibrado y radicalizado, es necesario que la gente tome conciencia del impacto que las personas y las empresas tienen en ese mundo y en la sociedad en la que viven. **Desde Clarity espero poder aportar mi granito de arena**.
 
->>> Tiempos oscuros y difíciles nos aguardan. Pronto todos tendremos que elegir entre hacer lo que es fácil o lo que está bien.
+> Tiempos oscuros y difíciles nos aguardan. Pronto todos tendremos que elegir entre hacer lo que es fácil o lo que está bien.
 <span style="font-style: normal"><b>Albus Dumbledore</b></span>.
 
-Si quieres saber cómo, os invito a entrar en la web de la empresa: [clarity.ia](https://clarity.ai).
+Si quieres saber cómo, os invito a entrar en la web de la empresa: [clarity.ai](https://clarity.ai).
 
 [Rebeca Minguela](https://es.wikipedia.org/wiki/Rebeca_Minguela), junto con [Antonio Molins](https://www.linkedin.com/in/amolins/) y [Joaquín Diez](https://www.linkedin.com/in/joaquindiez/), están creando un equipo de primera fila al que me han invitado a unirme como desarrollador de _backend_:
 
-![Equipo de Clarity](/images/ClarityTeam.jpg)
+![Equipo de Clarity](/images/ClarityTeam.jpg){: .mx-auto.d-block :}
 
 La empresa ha hecho una gran apuesta por la tecnología: la proporción de researchers y desarrolladores en la empresa es la más alta que he conocido. Como no podía ser de otra manera, el _stack_ tecnológico con el que trabajaré será Java/JVM.
 
 Espero que gracias a toda mi experiencia, conocimiento y trabajo pueda aportar un valor diferencial al equipo, ayudar a conseguir la importante misión que tiene la empresa y estar a la altura de los compañeros y las expectativas depositadas en mí.
 
-
-
-<style>
-  img {
-    margin: auto; display:block;
-  }
-  blockquote {
-    font-size: 1.05em;
-  }
-</style>
