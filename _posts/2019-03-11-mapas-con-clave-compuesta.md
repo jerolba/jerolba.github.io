@@ -3,7 +3,7 @@ layout: post
 title: "Mapas con clave compuesta"
 description: "¿Qué estructura de datos es mejor para guardar de forma indexada un objeto con clave compuesta? ¿Es mejor un Map<Tuple<A,B>, Object> o un Map<A,Map<B,Object>>?"
 modified: 2019-03-11
-tags: 
+tags:
 image:
   path: images/chunlea-ju-468174-unsplash.jpg
   feature: chunlea-ju-468174-unsplash.jpg
@@ -103,7 +103,7 @@ Aunque el tiempo de ejecución de DoubleMap está siempre ligeramente por debajo
 Sorprendentemente tener que crear una instancia de `Tuple` por cada consulta no penaliza en el rendimiento, e incluso lo mejora ligeramente en colecciones grandes (las optimizaciones de la JVM son inescrutables)
 
 ## Colecciones pequeñas
- 
+
 Los problemas a los que me enfrento normalmente usan colecciones grandes, pero en los resultados de los benchmarks podemos ver que en colecciones pequeñas la implementación de DoubleMap tiene bastante mejor rendimiento.
 
 **Indexación**
@@ -128,7 +128,7 @@ Los tiempos de la versión TupleMap son entre un 50% y un 150% peores. Tampoco m
 
 ## Conclusiones
 
-A pesar de los resultados obtenidos, en este caso considero que es difícil sacar unas conclusiones claras realizando *microbenchmarking*. **El comportamiento de las estructuras de datos pueden variar entre el código de producción y el del *benchmark*.** 
+A pesar de los resultados obtenidos, en este caso considero que es difícil sacar unas conclusiones claras realizando *microbenchmarking*. **El comportamiento de las estructuras de datos pueden variar entre el código de producción y el del *benchmark*.**
 
 En código de producción, entre acceso y acceso al mapa, tu aplicación puede hacer muchas cosas que influyan en la disponibilidad de la información en las cachés, generando un patrón de acceso complentamente distinto al del *benchmark*.
 
@@ -204,30 +204,7 @@ El código fuente para ejecutar los *benchmarks* están en el [repositorio de Gi
 </table>
 
 <style>
-.table-histogram td:nth-child(2), td:nth-child(3) {
+.table-histogram td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6) {
     text-align: right;
-    max-width: 200px;
-}
-.table-histogram td:nth-child(1) {
-    max-width: 300px;
-}
-.table-histogram tr:nth-child(1) {
-    font-weight: bold;
-}
-.table-histogram {
-    font-family: monospace;
-    font-size: 16px;
-}
-.table-bench {
-    font-family: monospace;
-    font-size: 14px;
-}
-.table-bench tr:nth-child(1) {
-    font-weight: bold;
-}
-.table-bench td {
-    text-align: right;
-    padding: 0 1px;
-    line-height: 18px;
 }
 </style>

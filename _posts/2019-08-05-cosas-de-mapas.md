@@ -3,7 +3,7 @@ layout: post
 title: "Cosas de Mapas"
 description: "HashMap es una de las estructuras de datos más usadas y sencillas de Java, pero si no tienes cuidado puedes meter la pata hasta el fondo."
 modified: 2019-08-05
-tags: 
+tags:
 image:
   path: images/circuit_board.jpg
   feature: circuit_board.jpg
@@ -18,7 +18,7 @@ Al hacerlo, me di cuenta de una cosa de la que no era consciente (o nunca me hab
 
 <!--more-->
 
-<img src="/images/API_HashMap_values.png"/>
+![API HashMap values](/images/API_HashMap_values.png){: .mx-auto.d-block :}
 
 ¿Qué significa eso? Los Sets y Collections devueltos por esos métodos no son nuevas instancias de colecciones que contengan referencias a las claves y/o valores del mapa, sino que **son implementaciones que simulan su comportamiento y que por detrás usan directamente los elementos que forman Map**.
 

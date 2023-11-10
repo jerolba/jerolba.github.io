@@ -3,7 +3,7 @@ layout: post
 title: "Sobre vistas y funciones en PostgreSQL"
 description: "Artículo sobre cómo la combinación de vistas y funciones en base de datos pueden tener un gran problema de rendimiento si no son usadas correctamente."
 modified: 2020-02-24
-tags: 
+tags:
 image:
   path: images/ExplainPlantTreeHero.png
   feature: ExplainPlantTreeHero.png
@@ -20,7 +20,7 @@ Entre otras cosas, para minimizar ese tiempo, hemos tenido la ocurrencia de agre
 
 Luego mediante el uso de vistas y de unas funciones [PL/pgSQL](https://es.wikipedia.org/wiki/PL/PgSQL) podemos desagregar la información de forma lógica reconstruyendo las columnas originales:
 
-[![Agregación de columnas y vista](/images/TableCompression.png)](/images/TableCompression.png)
+[![Agregación de columnas y vista](/images/TableCompression.png)](/images/TableCompression.png){: .mx-auto.d-block :}
 
 La función de agregación y las de desagregación son sencillas, no añaden mucho *overhead*, y no se pierde información en el proceso.
 
@@ -98,13 +98,13 @@ join table_w_view on (table_x_view.org_id = table_w_view.org_id)
 
 Si ejecutamos un explain completo (`EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS, FORMAT JSON)`) sobre la query y la llevamos a una [herramienta de visualización](https://tatiyants.com/pev/#/plans/new), encontramos que donde se va la mayor parte del tiempo es en hacer un escaneo secuencial de las tablas, sobre todo las que más columnas tienen:
 
-[![Visualización de explain plan](/images/ExplainPlanTree.png)](/images/ExplainPlanTree.png)
+[![Visualización de explain plan](/images/ExplainPlanTree.png){: .mx-auto.d-block :}](/images/ExplainPlanTree.png)
 
 <span class="img-comment">Para que podáis jugar con la visualización podéis encontrar el [json generado en el explain **aquí**](/static/ViewFunctionExplainPlan.json)</span>
 
 Al expandir el nodo que más tiempo emplea, vemos que en el `Output` aparece aplicada la función de desagregación de todas las columnas, aunque en la query sólo estemos preguntando por uno de los valores:
 
-[![Detalle de nodo sobre table_z](/images/ExplainPlanTreeNodeExpanded.png)](/images/ExplainPlanTreeNodeExpanded.png)
+[![Detalle de nodo sobre table_z](/images/ExplainPlanTreeNodeExpanded.png){: .mx-auto.d-block :}](/images/ExplainPlanTreeNodeExpanded.png)
 
 Sí sólo es necesario un valor de vista, **¿por qué el planificador/optimizador de Postgres calcula todas las columnas de las vistas?** Está claro que el valor no participa en ningún momento en el `join` ni en el `where`, simplemente accedemos a él en el `select`.
 
@@ -135,17 +135,17 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 
 conseguiremos que el tiempo de ejecución se reduzca a algo lógico y el plan de ejecución cambie por completo:
 
-[![Visualización de explain plan con función immutable](/images/ExplainPlanTreeImmutable.png)](/images/ExplainPlanTreeImmutable.png)
+[![Visualización de explain plan con función immutable](/images/ExplainPlanTreeImmutable.png){: .mx-auto.d-block :}](/images/ExplainPlanTreeImmutable.png)
 
 <span class="img-comment">El nuevo explain completo en json lo [podéis encontrar **aquí**](/static/ViewFunctionExplainPlanImmutable.json)</span>
 
 Si expandimos la información del nodo podemos ver que la única información que extrae de la tabla es la columna sobre la que ejecutará la función de desagregación, pero sin aplicarla:
 
-[![Detalle de nodo sobre table_z con función immutable](/images/ExplainPlanTreeNodeExpandedImmutable.png)](/images/ExplainPlanTreeNodeExpandedImmutable.png)
+[![Detalle de nodo sobre table_z con función immutable](/images/ExplainPlanTreeNodeExpandedImmutable.png){: .mx-auto.d-block :}](/images/ExplainPlanTreeNodeExpandedImmutable.png)
 
 Si recorremos todo el árbol de evaluación, vemos que no ejecuta el cálculo hasta que llega al nodo raíz:
 
-![Detalle de nodo raiz con aplicación de las funciones](/images/ExplainPlanTreeRoot.png)
+![Detalle de nodo raiz con aplicación de las funciones](/images/ExplainPlanTreeRoot.png){: .mx-auto.d-block :}
 
 ## Conclusión
 

@@ -3,7 +3,7 @@ layout: post
 title: Hosting estático en Firebase
 description: "Desplegando un sitio estático en Firebase"
 modified: 2017-03-23
-tags: 
+tags:
 image:
   path: images/google-datacenter.jpg
   feature: google-datacenter.jpg
@@ -15,7 +15,7 @@ excerpt_separator: <!--more-->
 
 Explorando la idea de hacer una aplicación *Serverless*, además de montar el API, me he animado a hacer una [web sencilla](https://hombre-o-mujer.jerolba.com) que haga uso del API que he creado para averiguar el nombre de una persona según su nombre.
 
-Existen múltiples sitios donde alojar una web estática, siendo [GitHub Pages](https://pages.github.com/) una de las opciones que más de moda se ha puesto entre la comunidad de desarrolladores para publicar la web de proyectos *open source* o el blog personal. 
+Existen múltiples sitios donde alojar una web estática, siendo [GitHub Pages](https://pages.github.com/) una de las opciones que más de moda se ha puesto entre la comunidad de desarrolladores para publicar la web de proyectos *open source* o el blog personal.
 
 Pero tiene un pequeño inconveniente: solo puedes tener un dominio personalizado por cuenta de GitHub, y el de mi cuenta está con este blog (o yo no he sabido encontrar la opción).
 
@@ -82,7 +82,7 @@ $ firebase init
 
 donde nos sacará un *wizard* en modo texto bastante currado con *checkboxes* para elegir opciones y navegar con los cursores. En este caso solo seleccionaré Hosting:
 
-<img src="/images/FirebaseMenu.png"/>
+![Menu consola de Firebase](/images/FirebaseMenu.png){: .mx-auto.d-block :}
 
 A continuación nos preguntará:
 
@@ -133,11 +133,11 @@ Todo este proceso de modificación de los registros del DNS dependerá de donde 
 
 ### HTTP/2 y CDN
 
-Google históricamente se ha preocupado mucho en optimizar el rendimiento a la hora de servir webs, y ha sido uno de los impulsores de [HTTP/2](https://es.wikipedia.org/wiki/HTTP/2). Así que en un servicio suyo no podía faltar esa funcionalidad, y **todo el tráfico es servido mediante HTTP/2**. 
+Google históricamente se ha preocupado mucho en optimizar el rendimiento a la hora de servir webs, y ha sido uno de los impulsores de [HTTP/2](https://es.wikipedia.org/wiki/HTTP/2). Así que en un servicio suyo no podía faltar esa funcionalidad, y **todo el tráfico es servido mediante HTTP/2**.
 
 Si miramos cómo son las peticiones en webs alojadas en GitHub Pages, S3 o incluso en [CloudFront](https://aws.amazon.com/es/cloudfront/) de Amazon, encontraremos que por ahora todas son servidas mediante HTTP/1.1 (por lo menos en los sitios que he probado).
 
-Como comenté antes, el soporte de SSL es automático y se encargan ellos de gestionar el certificado SSL, mientras que con AWS creo que tienes que proporcionarselo tú y en GitHub Pages no he encontrado ni la opción. 
+Como comenté antes, el soporte de SSL es automático y se encargan ellos de gestionar el certificado SSL, mientras que con AWS creo que tienes que proporcionarselo tú y en GitHub Pages no he encontrado ni la opción.
 
 Aunque en la especificación de HTTP/2 el uso de cifrado TLS es opcional, los navegadores harán obligatorio el uso de SSL para usar HTTP/2, así que alguna facilidad deberán ofrecer otros proveedores, aunque sea mediante [Let’s Encrypt](https://letsencrypt.org/) si no quieren quedarse atrás.
 
@@ -151,7 +151,7 @@ Revisando la documentación me ha sorprendido encontrarme [opciones de configura
 
 * **Redireccionamientos**: dado un patrón, redirigir a otra url con un 301 o 302. Esa url de destino puede ser relativa en tu web o absoluta hacia otro dominio. Esta opción viene muy bien cuando has movido o eliminado un recurso y no quieres dar un 404, ya que perderías páginas vistas, provocarás frustración en tus usuarios o sufrirías penalizaciones por parte de Google a nivel SEO.
 * **Rewrite**: Dado un patrón de url, sirve el fichero que se indique como destino. Aunque no es tan potente a la hora de crear reglas como pueda ser Nginx o Apache, porque no deja capturar variables o usar los parámetros de la url (en la documentación no menciona nada al respecto).
-* **Cabeceras**: Dado un patrón de url o fichero de recursos (ficheros los css, js, etc), permiten establecer las cabeceras HTTP de la respuesta. Esto permite personalizar, por ejemplo, el tiempo de caché `Cache-Control` según el tipo de fichero o ruta, controlar el [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), o especificar el `Content-Type` en concreto. 
+* **Cabeceras**: Dado un patrón de url o fichero de recursos (ficheros los css, js, etc), permiten establecer las cabeceras HTTP de la respuesta. Esto permite personalizar, por ejemplo, el tiempo de caché `Cache-Control` según el tipo de fichero o ruta, controlar el [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), o especificar el `Content-Type` en concreto.
 
 Esos patrones de urls siguen la notación [glob](https://en.wikipedia.org/wiki/Glob_%28programming%29), que habréis usado ya en el fichero `.gitignore` de [Git](https://git-scm.com/docs/gitignore).
 
@@ -161,13 +161,13 @@ A poco que tengas un poco de cariño a cómo se sirve tu web, te preocupes por s
 
 Si lo que necesitas es crear una web estática sencilla, sin mucho tráfico, olvidarte de contratar un alojamiento y de gestionar su disponibilidad, el servicio de hosting de **Firebase cubrirá con creces tus necesidades**.
 
-A poco que necesites algún comportamiento dinámico o pienses que vayas a tener más tráfico, deberías pensar en usar algún servicio en Cloud que, por muy poco dinero (desde 5 dólares), te dan una instancia lo suficientemente potente para la parte dinámica y con hasta 1TB de transferencia. A parte de la infinidad de servicios de VPS, los más conocidos a nivel de Cloud, entre otros, son: [Digital Ocean](https://m.do.co/c/6f902f4f0ee6), [Amazon Lightsail](https://amazonlightsail.com/) o [Linode](https://www.linode.com/). 
+A poco que necesites algún comportamiento dinámico o pienses que vayas a tener más tráfico, deberías pensar en usar algún servicio en Cloud que, por muy poco dinero (desde 5 dólares), te dan una instancia lo suficientemente potente para la parte dinámica y con hasta 1TB de transferencia. A parte de la infinidad de servicios de VPS, los más conocidos a nivel de Cloud, entre otros, son: [Digital Ocean](https://m.do.co/c/6f902f4f0ee6), [Amazon Lightsail](https://amazonlightsail.com/) o [Linode](https://www.linode.com/).
 
 El soporte de HTTP/2, SSL, ser un CDN y dar cierto control con los redireccionamientos o cabeceras, todo dentro del mismo producto y sin tener que contratar ni configurar más opciones, son un plus a tener en cuenta a la hora de determinar dónde alojar una web estática.
 
 ### Reconclusión
 
-Como ya contaba en la introducción he creado una web donde poder averiguar el género de una persona según el nombre: [https://hombre-o-mujer.jerolba.com](https://hombre-o-mujer.jerolba.com) 
+Como ya contaba en la introducción he creado una web donde poder averiguar el género de una persona según el nombre: [https://hombre-o-mujer.jerolba.com](https://hombre-o-mujer.jerolba.com)
 
 La web es muy sencilla, y la verdad es que engancha porque a lo tonto te tiras un buen rato probando nombres... ¿sabías que en España hay censadas 23 mujeres llamadas [Daenerys](https://es.wikipedia.org/wiki/Daenerys_Targaryen)? :)
 

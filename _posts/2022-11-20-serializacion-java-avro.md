@@ -3,7 +3,7 @@ layout: post
 title: "Serialización en Java con Avro"
 description: "¿Cuánto cuesta serializar y deserializar muchos datos en Java usando Avro?"
 modified: 2022-11-20
-tags: 
+tags:
 image:
   path: images/Autogiro_Cierva_C.19.jpg
   feature: Autogiro_Cierva_C.19.jpg
@@ -12,7 +12,7 @@ image:
 excerpt_separator: <!--more-->
 ---
 
-**TL;DR:** El artículo analiza el rendimiento de la serialización y deserialización de un gran volumen de datos con Avro, comparando los resultados con el [anterior artículo](/serializacion-java-json-protocol-buffers-y-flatbuffers/) sobre JSON, Protocol Buffers y FlatBuffers. 
+**TL;DR:** El artículo analiza el rendimiento de la serialización y deserialización de un gran volumen de datos con Avro, comparando los resultados con el [anterior artículo](/serializacion-java-json-protocol-buffers-y-flatbuffers/) sobre JSON, Protocol Buffers y FlatBuffers.
 
 <!--more-->
 
@@ -34,7 +34,7 @@ Exploraré las dos aproximaciones: con generación de código a partir del esque
 * [Usando GenericRecord](#usando-genericrecord)
 * [Usando GenericRecord optimizado](#usando-genericrecord-optimizado)
 
----  
+---
 
 ### IDL y generación de código
 
@@ -46,16 +46,16 @@ El fichero con el esquema equivalente al ejemplo del anterior artículo sería [
   "type": "record",
   "namespace": "com.jerolba.xbuffers.avro",
   "fields": [
-    { "name": "name", "type": "string" }, 
-    { "name": "category", "type": "string"}, 
+    { "name": "name", "type": "string" },
+    { "name": "category", "type": "string"},
     { "name": "organizationType",
       "type": {
         "type": "enum",
         "name": "OrganizationType",
         "symbols": ["FOO", "BAR", "BAZ"]
       }
-    }, 
-    { "name": "country", "type": "string" }, 
+    },
+    { "name": "country", "type": "string" },
     { "name": "attributes",
       "type": {
         "type": "array",
@@ -63,11 +63,11 @@ El fichero con el esquema equivalente al ejemplo del anterior artículo sería [
           "type": "record",
           "name": "Attribute",
           "fields": [
-            { "name": "id", "type": "string" }, 
-            { "name": "quantity", "type": "int"}, 
-            { "name": "amount", "type": "int"}, 
-            { "name": "size", "type": "int"}, 
-            { "name": "percent", "type": "double"}, 
+            { "name": "id", "type": "string" },
+            { "name": "quantity", "type": "int"},
+            { "name": "amount", "type": "int"},
+            { "name": "size", "type": "int"},
+            { "name": "percent", "type": "double"},
             { "name": "active", "type": "boolean"}
           ]
         }
@@ -234,7 +234,7 @@ try (var os = new FileOutputStream("/tmp/organizations.avro")) {
 
 Como estamos usando el mismo esquema, y sólo estamos cambiando cómo serializamos los datos, el fichero y memoria usada es la misma.
 
-El tiempo de serialización crece a los **5 903 ms**, un 10% más que usando código generado. La implementación de GenericRecord introduce una ligera sobrecarga. 
+El tiempo de serialización crece a los **5 903 ms**, un 10% más que usando código generado. La implementación de GenericRecord introduce una ligera sobrecarga.
 
 #### Deserialización
 
@@ -257,7 +257,7 @@ try (var dataFileReader = new DataFileReader<>(file, datumReader)) {
     Utf8 category = (Utf8) record.get("category");
     Utf8 country = (Utf8) record.get("country");
     Type type = Type.valueOf(record.get("organizationType").toString());
-    organizations.add(new Org(name.toString(), category.toString(), 
+    organizations.add(new Org(name.toString(), category.toString(),
                               country.toString(), type, attrs));
   }
 }
@@ -353,7 +353,7 @@ try (var dataFileReader = new DataFileReader<>(file, datumReader)) {
     Utf8 category = (Utf8) record.get(categoryPos);
     Utf8 country = (Utf8) record.get(countryPos);
     Type type = Type.valueOf(record.get(organizationTypePos).toString());
-    organizations.add(new Org(name.toString(), category.toString(), 
+    organizations.add(new Org(name.toString(), category.toString(),
                               country.toString(), type, attrs));
   }
 }
@@ -361,18 +361,18 @@ try (var dataFileReader = new DataFileReader<>(file, datumReader)) {
 
 El tiempo de deserialización cae a los **7 353 ms**, un 10% más rápido que la versión con código generado. ¿Por qué? No tengo conocimiento suficiente de sus interioridades como para atreverme a dar una respuesta, pero me ha sorprendido el resultado.
 
-#### Resumen de Avro 
+#### Resumen de Avro
 
 |   |Código generado|Generic Record|Generic Record<br/>optimizado |
 |---|---:|---:|---:|
-| Tiempo serialización    | 5 409 ms | 5 903 ms | 5 381 ms 
+| Tiempo serialización    | 5 409 ms | 5 903 ms | 5 381 ms
 | Tiempo deserialización  | 8 197 ms | 8 471 ms | 7 353 ms
 
-Usando GenericRecord podemos obtener alguna flexibilidad en el proceso sin perder rendimiento, pero hace el código mucho más verboso y propenso a errores debido al mapeo manual de campos. 
+Usando GenericRecord podemos obtener alguna flexibilidad en el proceso sin perder rendimiento, pero hace el código mucho más verboso y propenso a errores debido al mapeo manual de campos.
 
 Las dependencias incluidas son las mismas en todos los casos, y como mucho sólo podríamos ahorrarnos el paso de la generación de código.
 
---- 
+---
 
 ## Análisis e impresiones
 
@@ -381,7 +381,7 @@ Las dependencias incluidas son las mismas en todos los casos, y como mucho sólo
 | Tiempo serialización    | 11 718 ms | 5 823 ms |       3 803 ms | 5 409 ms
 | Tamaño fichero          |  2 457 MB | 1 044 MB |         600 MB |   846 MB
 | Tamaño fichero GZ       |    525 MB |   448 MB |         414 MB |   530 MB
-| Memoria serializando    |       N/A |  1,29 GB |    0.6 GB-1 GB |      N/A 
+| Memoria serializando    |       N/A |  1,29 GB |    0.6 GB-1 GB |      N/A
 | Tiempo deserialización  | 20 410 ms | 4 535 ms |   202-1 876 ms | 8 197 ms
 | Memoria deserialización |  2 193 MB | 2 710 MB |     0 - 600 MB | 2 520 MB
 | Tamaño librería JAR     |  1 910 KB | 1 636 KB |          64 KB | 3 469 KB

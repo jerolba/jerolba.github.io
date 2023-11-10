@@ -3,7 +3,7 @@ layout: post
 title: "Hashing y mapas"
 description: "El cambio de una sola línea de código relacionada con una función hash puede cambiar el rendimiento de una aplicación, tanto por consumo de CPU como de memoria"
 modified: 2019-01-27
-tags: 
+tags:
 image:
   path: images/1882_Mitchell_Map_of_New_York_City.jpg
   feature: 1882_Mitchell_Map_of_New_York_City.jpg
@@ -19,7 +19,7 @@ En este post os contaré un caso real en [Nextail](http://nextail.co/), donde el
 <!--more-->
 [David](https://twitter.com/david_bonilla) me sugirió titular el post con "**Cómo ahorrar miles de euros a tu empresa cambiando una línea de código**", pero como no he sido capaz de cuantificarlo objetivamente he optado por un título con menos [_clickbait_](https://es.wikipedia.org/wiki/Clickbait).
 
-Las [funciones hash](https://es.wikipedia.org/wiki/Funci%C3%B3n_hash) son una herramienta básica en tecnología, con múltiples [aplicaciones prácticas](https://es.wikipedia.org/wiki/Funci%C3%B3n_hash#Aplicaciones). Es importante conocer su funcionamiento y las implicaciones que puede tener elegir mal una función hash. 
+Las [funciones hash](https://es.wikipedia.org/wiki/Funci%C3%B3n_hash) son una herramienta básica en tecnología, con múltiples [aplicaciones prácticas](https://es.wikipedia.org/wiki/Funci%C3%B3n_hash#Aplicaciones). Es importante conocer su funcionamiento y las implicaciones que puede tener elegir mal una función hash.
 
 ## El problema
 
@@ -259,7 +259,7 @@ Por tanto, no sólo hay que tener en cuenta el número de colisiones de la funci
 
 Si dos claves resulta que tienen el mismo resultado al aplicar la función hash, acabarán en la misma posición del array. HashMap utiliza la técnica de **[direccionamiento cerrado con hashing abierto](https://es.wikipedia.org/wiki/Tabla_hash#Direccionamiento_Cerrado,_Encadenamiento_separado_o_Hashing_abierto)**: cada elemento del array contiene una lista enlazada de nodos donde va concatenando al final de la misma, según van llegando colisiones en esa posición del array.
 
-[<img title="encadenamiento de HashMap" src="/images/hash-table-chaining.png" class="mfp-img"/>](http://www.algolist.net/Data_structures/Hash_table/Chaining)
+[![encadenamiento de HashMap](/images/hash-table-chaining.png){: .mx-auto.d-block :}](http://www.algolist.net/Data_structures/Hash_table/Chaining)
 
 Cada uno de [los nodos de la lista contiene](http://hg.openjdk.java.net/jdk8/jdk8/jdk/file/687fd7c7986d/src/share/classes/java/util/HashMap.java#l278): la clave, el valor, el hash de la clave y la referencia al siguiente elemento de la lista.
 
@@ -380,7 +380,7 @@ El ejemplo se podría haber resuelto mejor con una matriz bidimensional, o utili
 
 <style>
 .table-data {
-    width: 350px; 
+    width: 350px;
     text-align: right;
 }
 </style>
