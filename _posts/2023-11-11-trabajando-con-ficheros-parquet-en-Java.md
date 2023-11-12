@@ -155,6 +155,10 @@ Su diseño orientado a columnas, junto con sus capacidades avanzadas de compresi
 
 Pese a sus ventajas indiscutibles, la adopción de Parquet como formato de intercambio de datos en el desarrollo de aplicaciones Java se enfrenta a obstáculos, principalmente debido a la complejidad de su API de bajo nivel y la falta de una interfaz de alto nivel que simplifique su uso. La necesidad de recurrir a bibliotecas de terceros añade una capa adicional de complejidad y dependencias, y la escasez de documentación accesible y ejemplos concretos constituyen una barrera significativa para muchos desarrolladores.
 
-Este post ha sido una introducción al formato, sus ventajas y los *WTF* que me he encontrado, no os desaniméis. Una vez asimilada esta información, **los próximos post tratarán sobre cómo trabajar con Parquet usando distintas librerías**.
+Este post ha sido una introducción al formato, sus ventajas y los *WTF* que me he encontrado, no os desaniméis. Una vez asimilada esta información, **los próximos post tratarán sobre cómo trabajar con Parquet usando distintas librerías**:
+
+- Trabajando con ficheros Parquet en Java usando Avro
+- Trabajando con ficheros Parquet en Java usando Protocol Buffers
+- Trabajando con ficheros Parquet en Java usando Carpet
 
 
