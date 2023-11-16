@@ -80,7 +80,7 @@ A pesar de la relevancia que tiene el formato en el mundo del Data Engineering, 
 
 ¿Cómo te sentirías si para aprender sobre cómo leer o escribir ficheros JSON tuvieras que pasar por Pandas o Spark y no fuera sencillo hacerlo directamente? Esa es la sensación que tienes cuando empiezas a estudiar sobre Parquet.
 
-Las herramientas de alto nivel que suele usar un Data Engineer (Pandas, Spark, ...) ya le proporcionan los métodos para exportar e importar directamente su información a Parquet (u otros formatos), por lo que le abstrae de los detalles. Pero es difícil encontrar documentación y ejemplos sobre su uso furea de esas utilidades, o está dispersa a lo largo de diferentes artículos que ha ido escribiendo la gente.
+Las herramientas de alto nivel que suele usar un Data Engineer (Pandas, Spark, ...) ya le proporcionan los métodos para exportar e importar directamente su información a Parquet (u otros formatos), por lo que le abstrae de los detalles. Pero es difícil encontrar documentación y ejemplos sobre su uso fuera de esas utilidades, o está dispersa a lo largo de diferentes artículos que ha ido escribiendo la gente.
 
 ¿Qué dirías si para leer o escribir ficheros JSON tuvieras que pasar por otras herramientas/formatos como Avro o Protocol Buffers y no hubiera una librería que lo soporte directamente? Eso es lo que pasa con Parquet.
 
@@ -139,7 +139,7 @@ Con el tiempo ha ido evolucionando e independizándose, pero no ha conseguido de
 
 Si tu proyecto va a hacer uso de Hadoop, todas esas dependencias serán necesarias, pero si lo que pretendes es usar ficheros normales fuera de Hadoop, hace que tu aplicación sea más pesada. **Yo os sugiero excluir esas dependencias transitivas en vuestro pom.xml o build.gradle**.
 
-A parte de incluir mucho código innecesario, puede suponer un problema al resolver conflictos de versiones de dependencias transitivas que tú también estés usando.
+Aparte de incluir mucho código innecesario, puede suponer un problema al resolver conflictos de versiones de dependencias transitivas que tú también estés usando.
 
 Si no excluyes ninguna dependencia, puedes encontrarte con más de 130 JARs y 75 MB en tu artefacto desplegable. Excluyendo cuidadosamente las dependencias que no uso, he llegado a tener sólo 30 JARs que consumen entre 23 y 29MB.
 
