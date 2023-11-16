@@ -16,7 +16,7 @@ Parquet es un formato ampliamente utilizado en el mundo del Data Engineeringy po
 <!--more-->
 ## Introducción
 
-[Apache Parquet](https://parquet.apache.org/), publicado por [Twitter](https://blog.twitter.com/engineering/en_us/a/2013/announcing-parquet-10-columnar-storage-for-hadoop) y [Cloudera](https://web.archive.org/web/20130504133255/http://blog.cloudera.com/blog/2013/03/introducing-parquet-columnar-storage-for-apache-hadoop/) en 2013, es un formato de archivo **columnar** eficiente y de **propósito general** para el ecosistema de Apache Hadoop. Inspirado en el *parper* ["Dremel: Interactive Analysis of Web-Scale Datasets"](https://research.google/pubs/pub36632/) de Google, Parquet está optimizado para soportar estructuras de datos complejas y anidadas.
+[Apache Parquet](https://parquet.apache.org/), publicado por [Twitter](https://blog.twitter.com/engineering/en_us/a/2013/announcing-parquet-10-columnar-storage-for-hadoop) y [Cloudera](https://web.archive.org/web/20130504133255/http://blog.cloudera.com/blog/2013/03/introducing-parquet-columnar-storage-for-apache-hadoop/) en 2013, es un formato de archivo **columnar** eficiente y de **propósito general** para el ecosistema de Apache Hadoop. Inspirado en el *paper* ["Dremel: Interactive Analysis of Web-Scale Datasets"](https://research.google/pubs/pub36632/) de Google, Parquet está optimizado para soportar estructuras de datos complejas y anidadas.
 
 Aunque emergió casi simultáneamente con [ORC](https://es.wikipedia.org/wiki/Apache_ORC), de Hortonworks y Facebook, parece que el formato que ha acabado triunfando ha sido Parquet.
 
