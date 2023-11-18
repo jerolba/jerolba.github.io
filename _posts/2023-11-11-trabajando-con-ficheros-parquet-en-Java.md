@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Trabajando con ficheros Parquet en Java"
-description: "Parquet es un formato ampliamente utilizado en el mundo del Data Engineeringy posee un potencial considerable para aplicaciones de Backend tradicionales. Este artículo es una introducción sobre el formato, y de las cosas raras que he encontrado cuando he querido usarlo para que no tengas que pasar por lo mismo."
+description: "Parquet es un formato ampliamente utilizado en el mundo del Data Engineering y posee un potencial considerable para aplicaciones de Backend tradicionales. Este artículo es una introducción sobre el formato, y de las cosas raras que he encontrado cuando he querido usarlo para que no tengas que pasar por lo mismo."
 modified: 2023-11-11
 tags:
 image:
@@ -11,7 +11,7 @@ image:
 excerpt_separator: <!--more-->
 ---
 
-Parquet es un formato ampliamente utilizado en el mundo del Data Engineeringy posee un potencial considerable para aplicaciones de Backend tradicionales. Este artículo es una **introducción sobre el formato** y de las cosas raras que he encontrado cuando he querido usarlo, para que no tengas que pasar por lo mismo.
+Parquet es un formato ampliamente utilizado en el mundo del Data Engineering y posee un potencial considerable para aplicaciones de Backend tradicionales. Este artículo es una **introducción sobre el formato** y de las cosas raras que he encontrado cuando he querido usarlo, para que no tengas que pasar por lo mismo.
 
 <!--more-->
 ## Introducción
@@ -63,11 +63,11 @@ El formato soporta persistir **estructuras de datos complejas, [listas y mapas](
 
 Históricamente las colecciones se pueden representar internamente de múltiples maneras, dependiendo de cómo quieras gestionar que una colección pueda ser null o vacía. A su vez, también como detalle de implementación, cómo nombrar cada elemento de la colección puede variar entre implementaciones del formato. Estas variaciones ha llevado a que distintas utilidades de diferentes lenguajes generen ficheros con diferencias que los hagan incompatibles.
 
-Oficialmente ya se ha definido la [forma correcta de representar las colecciones](https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#lists), pero muchas herramientas manteniendo la compatibilidad hacia atrás, siguen generando ficheros con las representaciones *legacy*, y es necesario configurar explícitamente que escriban en la forma "correcta". En Pandas con [PyArrow](https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetWriter.html#pyarrow.parquet.ParquetWriter) tendrás que activar `use_compliant_nested_type`, mientras que Avro Parquet tendrás que desactivar el flag `WRITE_OLD_LIST_STRUCTURE_DEFAULT`.
+Oficialmente ya se ha definido la [forma correcta de representar las colecciones](https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#lists), pero muchas herramientas manteniendo la compatibilidad hacia atrás, siguen generando ficheros con las representaciones *legacy*, y es necesario configurar explícitamente que escriban en la forma "correcta". En Pandas con [PyArrow](https://arrow.apache.org/docs/python/generated/pyarrow.parquet.ParquetWriter.html#pyarrow.parquet.ParquetWriter) tendrás que activar `use_compliant_nested_type`, mientras que Avro Parquet en Java tendrás que desactivar el flag `WRITE_OLD_LIST_STRUCTURE_DEFAULT`.
 
 Aunque Parquet tiene un [IDL](https://en.wikipedia.org/wiki/Interface_description_language) para definir el formato de los datos contenidos en un fichero (su *schema*), **no proporciona directamente una herramienta estándar para, dado un IDL, generar código Java** que permita serializar y deserializar datos en Parquet.
 
-Parquet embebe dentro de su codificación el comprimir la información. De forma directa hace compresión *Run-length encoding* (RLE) o *Bit Packing*, y de forma opcional permite configurar si queremos comprimir bloques de datos usando compresores como Snappy, GZip o LZ4, y si queremos usar Diccionarios para normalizar los registros repetidos.
+Parquet embebe dentro de su codificación el comprimir la información. De forma directa hace compresión *Run-length encoding* (RLE) o *Bit Packing*, y de forma opcional permite configurar si queremos comprimir bloques de datos usando compresores como Snappy, GZip o LZ4, y si queremos usar Diccionarios para normalizar los valores repetidos.
 
 Por defecto se suele usar compresión Snappy, ya que tiene un buen ratio de compresión/tiempo CPU.
 
