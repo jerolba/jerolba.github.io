@@ -157,7 +157,7 @@ Pese a sus ventajas indiscutibles, la adopción de Parquet como formato de inter
 
 Este post ha sido una introducción al formato, sus ventajas y los *WTF* que me he encontrado, no os desaniméis. Una vez asimilada esta información, **los próximos post tratarán sobre cómo trabajar con Parquet usando distintas librerías**:
 
-- Trabajando con ficheros Parquet en Java usando Avro
+- [Trabajando con ficheros Parquet en Java usando Avro](/trabajando-con-ficheros-parquet-en-java-usando-avro/)
 - Trabajando con ficheros Parquet en Java usando Protocol Buffers
 - Trabajando con ficheros Parquet en Java usando Carpet
 
