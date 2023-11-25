@@ -69,12 +69,12 @@ Por tanto:
 
 La forma de construir una instancia de `ParquetWriter` es mediante un Builder, donde se le pueden configurar bastantes parámetros propios de Parquet o de la librería que estemos usando (Avro). Por ejemplo:
  * `withSchema`: esquema de la clase Organization en Avro, que internamente convertirá a schema de Parquet
- * `withCompressionCodec`: método de compresión a usar: SNAPPY, GZIP, LZ4, etc. Por defecto configura SNAPPY.
+ * `withCompressionCodec`: método de compresión a usar: SNAPPY, GZIP, LZ4, etc. Por defecto no configura ninguno.
  * `withWriteMode`: por defecto es CREATE, por lo que si el fichero ya existiera no lo sobreescribiría y lanza una excepción. Para evitarlo debes usar OVERWRITE
  * `withValidation`: si queremos que valide los tipos de datos que se pasan respecto al esquema definido
  * `withBloomFilterEnabled`: si queremos habilitar la creación de [bloom filters](https://en.wikipedia.org/wiki/Bloom_filter)
 
-La configuración más genérica de ambas librerías se puede pasar con el método `config(String property, String value)`. En este caso configuramos que internamente debe usar una [estructura de tres niveles](https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#lists) para representar listas anidadas.
+Una configuración más genérica (no definida en el API) de ambas librerías se puede pasar con el método `config(String property, String value)`. En este caso configuramos que internamente debe usar una [estructura de tres niveles](https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#lists) para representar listas anidadas.
 
 Una vez instanciada la clase `ParquetWriter`, la mayor complejidad reside en transformar tus POJOs a las clases `Organization` generadas a partir del IDL de Avro. El código completo sería este:
 
@@ -222,6 +222,7 @@ try (ParquetWriter<GenericRecord> writer = AvroParquetWriter.<GenericRecord>buil
   }
 }
 ```
+
 El código lo puedes encontrar en [GitHub](https://github.com/jerolba/parquet-for-java-posts/blob/master/src/main/java/com/jerolba/parquet/avro/ToParquetUsingAvroWithGenericRecord.java#L33).
 
 #### Deserialización
@@ -256,7 +257,7 @@ Al estar utilizando la interface de Avro, mantiene su lógica de que los Strings
 
 El código lo puedes encontrar en [GitHub](https://github.com/jerolba/parquet-for-java-posts/blob/master/src/main/java/com/jerolba/parquet/avro/FromParquetUsingAvroWithGenericRecord.java#L23).
 
-Por defecto cuando lee el fichero deserializa todos los campos del objeto, ya que desconoce el esquema de lo que necesitas leer y lo procesa todo. **Si quisieras una proyección de los campos deberás pasárselo en forma de schema de Avro** en la creación del `ParquetReader`:
+Por defecto cuando lee el fichero deserializa todos los campos del objeto, ya que desconoce el esquema de lo que necesitas leer, y lo procesa todo. **Si quisieras una proyección de los campos deberás pasárselo en forma de schema de Avro** en la creación del `ParquetReader`:
 
 ```java
 Schema projection = SchemaBuilder.record("Organizations")
@@ -292,14 +293,13 @@ Tanto usando generación de código como GenericRecord, el resultado es el mismo
 | Dictionay False | 1 034 MB | 508 MB |
 | Dictionay True  |   289 MB | 281 MB |
 
-
 Dadas la diferencia de tamaños, podemos ver que en mi ejemplo sintético el uso de diccionarios comprime bastante la información, mejor que el propio algoritmo de Snappy. La activación de la compresión o no vendrá dada por la penalización en rendimiento que suponga.
 
 ### Tiempo de serialización
 
 **Usando generación de código:**
 
-| | Sin comprimir | Snappy |
+|    | Sin comprimir | Snappy |
 |:---|---:|---:|
 | Dictionay False | 16 403 ms | 17 200 ms |
 | Dictionay True  | 17 796 ms | 17 841 ms |
@@ -364,3 +364,4 @@ Los datos que he usado en el ejemplo son sintéticos y los resultados pueden var
 
 En entornos de escribir una vez y leer múltiples veces, el tiempo empleado en serializar no debería ser determinante. Son más importantes, por ejemplo, el consumo de tu almacenamiento, el tiempo de transferencia de los ficheros, o la velocidad de procesamiento (más si puedes filtrar las columnas a las que accedes).
 
+A pesar de usar diferentes técnicas de compresión y codificación, el tiempo de procesamiento de ficheros es bastante rápido. Junto a su capacidad de trabajar con un esquema tipado, lo convierte en un formato de intercambio de datos a tener en cuenta en proyectos con alto volumen de datos.
