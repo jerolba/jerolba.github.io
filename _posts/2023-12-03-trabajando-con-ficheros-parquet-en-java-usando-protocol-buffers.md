@@ -169,8 +169,8 @@ Dadas la diferencia de tamaños, podemos ver que en mi ejemplo sintético el uso
 
 | | Sin comprimir | Snappy |
 |:---|---:|---:|
-| Dictionay False | 16 039 ms | 16 606 ms |
-| Dictionay True  | 16 806 ms | 17 071 ms |
+| Dictionay False | 14 802 ms | 15 450 ms |
+| Dictionay True  | 16 018 ms | 16 174 ms |
 
 El tiempo es muy similar en todos los casos, y podemos decir que las distintas técnicas de compresión no afectan sensiblemente al tiempo empleado.
 
@@ -180,8 +180,8 @@ El tiempo es muy similar en todos los casos, y podemos decir que las distintas t
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 12 419 ms | 13 173 ms |
-| Dictionay True  | 11 379 ms | 11 096 ms |
+| Dictionay False | 12 264 ms | 13 028 ms |
+| Dictionay True  | 10 492 ms | 11 025 ms |
 
 En este caso, el uso del diccionario tiene un impacto relevante en el tiempo, al ahorrarse decodificar información que está repetida. Definitivamente no hay una razón para desactivar la funcionalidad.
 

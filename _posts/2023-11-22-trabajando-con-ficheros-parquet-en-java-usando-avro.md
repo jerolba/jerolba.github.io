@@ -301,15 +301,15 @@ Dadas la diferencia de tamaños, podemos ver que en mi ejemplo sintético el uso
 
 |    | Sin comprimir | Snappy |
 |:---|---:|---:|
-| Dictionay False | 16 403 ms | 17 200 ms |
-| Dictionay True  | 17 796 ms | 17 841 ms |
+| Dictionay False | 14 386 ms | 14 920 ms |
+| Dictionay True  | 15 110 ms | 15 381 ms |
 
 **Usando GenericRecord:**
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 16 828 ms | 17 560 ms |
-| Dictionay True  | 17 795 ms | 17 897 ms |
+| Dictionay False | 15 287 ms | 15 809 ms |
+| Dictionay True  | 16 119 ms | 16 432 ms |
 
 El tiempo es muy similar en todos los casos, y podemos decir que las distintas técnicas de compresión no afectan sensiblemente al tiempo empleado.
 
@@ -323,15 +323,15 @@ No hay diferencias de tiempos reseñables entre código generado y el uso de `Ge
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 14 795 ms | 14 346 ms |
-| Dictionay True  | 10 011 ms | 10 575 ms |
+| Dictionay False | 10 722 ms | 10 736 ms |
+| Dictionay True  |  7 707 ms |  7 665 ms |
 
 **Usando GenericRecord:**
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 13 276 ms | 14 044 ms |
-| Dictionay True  |  8 639 ms |  9 347 ms |
+| Dictionay False | 12 089 ms | 11 931 ms |
+| Dictionay True  |  8 374 ms |  8 451 ms |
 
 En este caso el uso del diccionario tiene un impacto relevante en el tiempo, al ahorrarse decodificar información que está repetida. Definitivamente no hay una razón para desactivar la funcionalidad.
 
