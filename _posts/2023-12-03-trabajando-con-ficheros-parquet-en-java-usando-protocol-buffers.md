@@ -159,8 +159,8 @@ Aprovechando los análisis que hice [anteriormente](/serializacion-java-avro/#an
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 1 034 MB | 508 MB |
-| Dictionay True  |   289 MB | 281 MB |
+| Dictionary False | 1 034 MB | 508 MB |
+| Dictionary True  |   289 MB | 281 MB |
 
 
 Dadas la diferencia de tamaños, podemos ver que en mi ejemplo sintético el uso de diccionarios comprime bastante la información, casi mejor que el propio algoritmo de Snappy. La activación de la compresión o no vendrá dada por la penalización en rendimiento que suponga.
@@ -169,8 +169,8 @@ Dadas la diferencia de tamaños, podemos ver que en mi ejemplo sintético el uso
 
 | | Sin comprimir | Snappy |
 |:---|---:|---:|
-| Dictionay False | 14 802 ms | 15 450 ms |
-| Dictionay True  | 16 018 ms | 16 174 ms |
+| Dictionary False | 14 802 ms | 15 450 ms |
+| Dictionary True  | 16 018 ms | 16 174 ms |
 
 El tiempo es muy similar en todos los casos, y podemos decir que las distintas técnicas de compresión no afectan sensiblemente al tiempo empleado.
 
@@ -180,8 +180,8 @@ El tiempo es muy similar en todos los casos, y podemos decir que las distintas t
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 12 264 ms | 13 028 ms |
-| Dictionay True  | 10 492 ms | 11 025 ms |
+| Dictionary False | 12 264 ms | 13 028 ms |
+| Dictionary True  | 10 492 ms | 11 025 ms |
 
 En este caso, el uso del diccionario tiene un impacto relevante en el tiempo, al ahorrarse decodificar información que está repetida. Definitivamente no hay una razón para desactivar la funcionalidad.
 

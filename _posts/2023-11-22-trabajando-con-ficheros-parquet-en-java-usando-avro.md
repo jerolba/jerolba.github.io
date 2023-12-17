@@ -290,8 +290,8 @@ Tanto usando generación de código como GenericRecord, el resultado es el mismo
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 1 034 MB | 508 MB |
-| Dictionay True  |   289 MB | 281 MB |
+| Dictionary False | 1 034 MB | 508 MB |
+| Dictionary True  |   289 MB | 281 MB |
 
 Dadas la diferencia de tamaños, podemos ver que en mi ejemplo sintético el uso de diccionarios comprime bastante la información, mejor que el propio algoritmo de Snappy. La activación de la compresión o no vendrá dada por la penalización en rendimiento que suponga.
 
@@ -301,15 +301,15 @@ Dadas la diferencia de tamaños, podemos ver que en mi ejemplo sintético el uso
 
 |    | Sin comprimir | Snappy |
 |:---|---:|---:|
-| Dictionay False | 14 386 ms | 14 920 ms |
-| Dictionay True  | 15 110 ms | 15 381 ms |
+| Dictionary False | 14 386 ms | 14 920 ms |
+| Dictionary True  | 15 110 ms | 15 381 ms |
 
 **Usando GenericRecord:**
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 15 287 ms | 15 809 ms |
-| Dictionay True  | 16 119 ms | 16 432 ms |
+| Dictionary False | 15 287 ms | 15 809 ms |
+| Dictionary True  | 16 119 ms | 16 432 ms |
 
 El tiempo es muy similar en todos los casos, y podemos decir que las distintas técnicas de compresión no afectan sensiblemente al tiempo empleado.
 
@@ -323,15 +323,15 @@ No hay diferencias de tiempos reseñables entre código generado y el uso de `Ge
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 10 722 ms | 10 736 ms |
-| Dictionay True  |  7 707 ms |  7 665 ms |
+| Dictionary False | 10 722 ms | 10 736 ms |
+| Dictionary True  |  7 707 ms |  7 665 ms |
 
 **Usando GenericRecord:**
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 12 089 ms | 11 931 ms |
-| Dictionay True  |  8 374 ms |  8 451 ms |
+| Dictionary False | 12 089 ms | 11 931 ms |
+| Dictionary True  |  8 374 ms |  8 451 ms |
 
 En este caso el uso del diccionario tiene un impacto relevante en el tiempo, al ahorrarse decodificar información que está repetida. Definitivamente no hay una razón para desactivar la funcionalidad.
 
@@ -345,8 +345,8 @@ Para poner en perspectiva el rendimiento, en mi portátil lee 50 000 `Organizati
 
 |   | Sin comprimir | Snappy |
 |---|---:|---:|
-| Dictionay False | 289 ms | 304 ms |
-| Dictionay True  | 195 ms | 203 ms |
+| Dictionary False | 289 ms | 304 ms |
+| Dictionary True  | 195 ms | 203 ms |
 
 Confirmamos la promesa de que si accedemos a un subconjunto de columnas, leeremos y decodificaremos mucha menos información. En este caso **emplea un 2.5% del tiempo**, o lo que es lo mismo, **es 40 veces más rápido** procesando el mismo fichero.
 
