@@ -159,6 +159,6 @@ Este post ha sido una introducción al formato, sus ventajas y los *WTF* que me 
 
 - [Trabajando con ficheros Parquet en Java usando Avro](/trabajando-con-ficheros-parquet-en-java-usando-avro/)
 - [Trabajando con ficheros Parquet en Java usando Protocol Buffers](/trabajando-con-ficheros-parquet-en-java-usando-protocol-buffers/)
-- Trabajando con ficheros Parquet en Java usando Carpet
+- [Trabajando con ficheros Parquet en Java usando Carpet](/trabajando-con-ficheros-parquet-en-java-usando-carpet/)
 
 
