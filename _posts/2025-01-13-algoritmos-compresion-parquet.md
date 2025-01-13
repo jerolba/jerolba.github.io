@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Algoritmos de compresión en Parquet"
-description: "Parquet soporta múltiples algoritmos de compresión. En el artículo analizamos y medimos GZIP, LZ4, Snappy, ZSTD y Brotli"
+description: "Parquet soporta múltiples algoritmos de compresión. En el artículo analizamos y medimos GZIP, LZ4, Snappy, ZSTD y LZO"
 modified: 2025-01-13
 tags:
 excerpt_separator: <!--more-->
