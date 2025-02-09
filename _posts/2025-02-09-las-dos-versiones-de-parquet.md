@@ -51,7 +51,7 @@ CarpetWriter<T> writer = new CarpetWriter.Builder<>(outputFile, clazz)
 
 Dataset del gobierno de Italia:
 
-| Formato | Version 1| Version 2 | Mejora |
+| Formato | Versión 1| Versión 2 | Mejora |
 |---|---:|---:|---:|
 | CSV | 1761 MB | 1761 MB | - |
 | UNCOMPRESSED | 564 MB | 355 MB | 37 % |
@@ -63,7 +63,7 @@ Dataset del gobierno de Italia:
 
 Dataset de taxis de New York:
 
-| Formato | Version 1 | Version 2 | Mejora |
+| Formato | Versión 1 | Versión 2 | Mejora |
 |---|---:|---:|---:|
 | CSV | 2983 MB | 2983 MB | - |
 | UNCOMPRESSED |  760 MB | 511 MB | 33 % |
@@ -79,7 +79,7 @@ Se nota que los encodings nuevos permiten compactar más información de forma d
 
 Dataset del gobierno de Italia en segundos:
 
-| Formato | Version 1 | Version 2 | Mejora |
+| Formato | Versión 1 | Versión 2 | Mejora |
 |---|---:|---:|---:|
 | UNCOMPRESSED | 25,0 | 23,6 | 6 % |
 | SNAPPY | 25,2 | 23,5 | 7 % |
@@ -90,7 +90,7 @@ Dataset del gobierno de Italia en segundos:
 
 Dataset de taxis de New York en segundos:
 
-| Formato | Version 1 | Version 2 | Mejora |
+| Formato | Versión 1 | Versión 2 | Mejora |
 |---|---:|---:|---:|
 | UNCOMPRESSED | 57,9 | 50,2 | 13 % |
 | SNAPPY | 56,4 | 50,7 | 10 % |
@@ -105,7 +105,7 @@ La mejora en los tiempos de escritura es reseñable, pero sobre todo en el datas
 
 Dataset del gobierno de Italia en segundos:
 
-| Formato | Version 1 | Version 2 | Mejora |
+| Formato | Versión 1 | Versión 2 | Mejora |
 |---|---:|---:|---:|
 | UNCOMPRESSED | 11,4 | 11,3 | 1 % |
 | SNAPPY | 12,5 | 11,5 | 8 % |
@@ -116,7 +116,7 @@ Dataset del gobierno de Italia en segundos:
 
 Dataset de taxis de New York en segundos:
 
-| Formato | Version 1 | Version 2 | Mejora |
+| Formato | Versión 1 | Versión 2 | Mejora |
 |---|---:|---:|---:|
 | UNCOMPRESSED | 37,4 | 33,0 | 12 % |
 | SNAPPY | 39,9 | 34,0 | 15 % |
