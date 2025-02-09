@@ -64,7 +64,7 @@ UNCOMPRESSED, SNAPPY, GZIP, LZO, BROTLI, LZ4, ZSTD y LZ4_RAW (LZ4 está deprecad
 
 ### Nivel de compresión
 
-Algunos de estos algoritmos pueden configurar el nivel de compresión. Este nivel suele estar relacionado con el esfuerzo que tienen que hacer para encontrar el patrón de repetición, y a mayor compresión, más tiempo tienen que emplear en el proceso de compresión.
+Algunos de estos algoritmos pueden configurar el nivel de compresión. Este nivel suele estar relacionado con el esfuerzo que tienen que hacer para encontrar el patrón de repetición, y a mayor compresión, más tiempo y memoria tienen que emplear en el proceso de compresión.
 
 Aunque vienen con un valor por defecto, es modificable usando el mecanismo de configuración genérica de Parquet, aunque cada codec usa una clave distinta.
 
@@ -219,7 +219,7 @@ En la dependencia `hadoop-common:hadoop-common` está la implementación de `Gzi
 
 ¿Dónde está la implementación de `BrotliCodec` y `LzoCodec`? **No están en ninguna de las dependencias de Parquet o Hadoop**, por lo que si lo usas sin meter dependencias adicionales, tu aplicación no funcionará con ficheros comprimidos con esos formatos.
 * Para soportar LZO necesitarás añadir la [dependencia](https://central.sonatype.com/artifact/org.anarres.lzo/lzo-hadoop/1.0.1) `org.anarres.lzo:lzo-hadoop` en tu pom o gradle.
-* Más complejo aún es el caso de Brotli: la [dependencia](https://github.com/rdblue/brotli-codec) ni siquiera está en maven central y deberás añadir además el repositorio de [JitPack](https://jitpack.io).
+* Más complejo aún es el caso de Brotli: la [dependencia](https://github.com/rdblue/brotli-codec) ni siquiera está en Maven Central y deberás añadir además el repositorio de [JitPack](https://jitpack.io).
 
 
 
