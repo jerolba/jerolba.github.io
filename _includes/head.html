@@ -55,6 +55,8 @@
   {% include google_analytics.html %}
   {% include cloudflare_analytics.html %}
 
+  <script defer src="https://cdn.overtracking.com/t/tVi3j3s5qfL0ZHTHZ/"></script>
+
   {% if layout.common-ext-css %}
     {% for css in layout.common-ext-css %}
       {% include ext-css.html css=css %}
@@ -78,7 +80,7 @@
       {% include ext-css.html css=css %}
     {% endfor %}
   {% endif %}
-  
+
   {% if page.css %}
     {% for css in page.css %}
       <link rel="stylesheet" href="{{ css | relative_url }}">

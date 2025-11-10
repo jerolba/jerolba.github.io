@@ -7,7 +7,7 @@ tags:
 excerpt_separator: <!--more-->
 ---
 
-Esta semana he publicado una nueva versión de [Carpet](https://github.com/jerolba/parquet-carpet), la librería de Java para trabajar con ficheros Parquet. En esta versión he añadido una funcionalidad que  creo que nunca nadie va a usar: **la capacidad de leer y escribir columnas de tipo BSON**.
+Esta semana he publicado una nueva versión de [Carpet](https://github.com/jerolba/parquet-carpet), la librería de Java para trabajar con ficheros Parquet. En esta versión he añadido una funcionalidad que creo que nunca nadie va a usar: **la capacidad de leer y escribir columnas de tipo BSON**.
 
 <!--more-->
 
