@@ -106,11 +106,11 @@ Para minimizar la latencia y maximizar el uso del ancho de banda disponible, Car
 `S3InputFile` optimiza la lectura reduciendo el número de peticiones y paralelizando la descarga:
 
 - **Caché del *footer*:** Hace una petición inicial de los últimos 8 MiB del archivo. En la gran mayoría de los casos, esta única solicitud recupera todo el *footer* con los metadatos, eliminando múltiples viajes de ida y vuelta a la red antes de que comience el procesamiento de datos real. En el caso de que el fichero sea pequeño, se cargará en memoria de una sola vez.
-![cache-footer](/images/carpet-s3-1-cache-footer.svg)
+![Caché del footer](/images/carpet-s3-1-cache-footer.svg)
 - **Lecturas por rangos en paralelo:** Una vez analizado el *footer*, e identificado qué columnas y qué bloques de datos hay que leer en cada grupo de filas, la carga se hace en paralelo para maximizar el ancho de banda usado.
-![cache-footer](/images/carpet-s3-2-rangos-paralelos.svg)
+![Lecturas por rangos en paralelo](/images/carpet-s3-2-rangos-paralelos.svg)
 - **Prefetching especulativo:** Mientras la CPU decodifica y procesa los datos de un grupo de filas, `S3InputFile` recupera de forma asíncrona los rangos de datos para el siguiente grupo de filas. Los bloques de datos a descargar se infieren de las columnas referidas en el anterior grupo de filas. Superponer la E/S y la ejecución de la CPU minimiza el tiempo de procesamiento.
-![cache-footer](/images/carpet-s3-3-prefetch.svg)
+![Prefetching especulativo](/images/carpet-s3-3-prefetch.svg)
 
 ### Escritura
 
