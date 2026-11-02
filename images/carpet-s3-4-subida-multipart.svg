@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784 192" role="img" aria-label="Línea de tiempo con tres carriles. Mientras la CPU codifica el grupo de filas n+1, los datos ya codificados del grupo n esperan en memoria y se suben a S3 con tres peticiones multipart en paralelo." font-family="'IBM Plex Sans', system-ui, sans-serif">
+<defs><marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6B7A90"></path></marker></defs>
+<g font-size="13" fill="#3D4C62">
+<rect x="262" y="20" width="392" height="154" rx="8" fill="#6B3FA0" fill-opacity="0.07" stroke="#6B3FA0" stroke-width="1.5" stroke-dasharray="5 4"></rect>
+<text x="458" y="14" text-anchor="middle" font-weight="600" fill="#6B3FA0">Mientras se codifica n+1, se sube n</text>
+<text x="20" y="47" font-weight="600" fill="#0E1A2B">CPU</text>
+<text x="20" y="83" font-weight="600" fill="#0E1A2B">Memoria</text>
+<text x="20" y="122" font-weight="600" fill="#0E1A2B">S3</text>
+<text x="20" y="138" font-size="12">multipart</text>
+<rect x="130" y="26" width="128" height="32" rx="6" fill="#1F2D4A"></rect><text x="194" y="47" text-anchor="middle" fill="#FFFFFF" font-weight="600">Codifica 1</text>
+<rect x="262" y="26" width="128" height="32" rx="6" fill="#1F2D4A"></rect><text x="326" y="47" text-anchor="middle" fill="#FFFFFF" font-weight="600">Codifica 2</text>
+<rect x="394" y="26" width="128" height="32" rx="6" fill="#1F2D4A"></rect><text x="458" y="47" text-anchor="middle" fill="#FFFFFF" font-weight="600">Codifica 3</text>
+<rect x="526" y="26" width="128" height="32" rx="6" fill="#FFFFFF" stroke="#1F2D4A" stroke-width="1.5" stroke-dasharray="5 4"></rect><text x="590" y="47" text-anchor="middle" fill="#1F2D4A">Codifica 4…</text>
+<rect x="262" y="66" width="128" height="24" rx="5" fill="#E3E8EF"></rect><text x="326" y="83" text-anchor="middle">Datos 1</text>
+<rect x="394" y="66" width="128" height="24" rx="5" fill="#E3E8EF"></rect><text x="458" y="83" text-anchor="middle">Datos 2</text>
+<rect x="526" y="66" width="128" height="24" rx="5" fill="#E3E8EF"></rect><text x="590" y="83" text-anchor="middle">Datos 3</text>
+<g fill="#6B3FA0">
+<rect x="262" y="100" width="100" height="20" rx="4"></rect><rect x="262" y="124" width="100" height="20" rx="4"></rect><rect x="262" y="148" width="100" height="20" rx="4"></rect>
+<rect x="394" y="100" width="100" height="20" rx="4"></rect><rect x="394" y="124" width="100" height="20" rx="4"></rect><rect x="394" y="148" width="100" height="20" rx="4"></rect>
+<rect x="526" y="100" width="100" height="20" rx="4"></rect><rect x="526" y="124" width="100" height="20" rx="4"></rect><rect x="526" y="148" width="100" height="20" rx="4"></rect>
+</g>
+<g fill="#FFFFFF" font-size="12">
+<text x="272" y="114">parte 1</text><text x="272" y="138">parte 2</text><text x="272" y="162">parte 3</text>
+<text x="404" y="114">parte 4</text><text x="404" y="138">parte 5</text><text x="404" y="162">parte 6</text>
+<text x="536" y="114">parte 7</text><text x="536" y="138">parte 8</text><text x="536" y="162">parte 9</text>
+</g>
+<line x1="130" y1="184" x2="654" y2="184" stroke="#6B7A90" stroke-width="1.5" marker-end="url(#m5)"></line>
+<text x="662" y="188" font-size="12">tiempo</text>
+</g>
+</svg>

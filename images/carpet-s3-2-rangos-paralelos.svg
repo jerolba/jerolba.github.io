@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784 212" role="img" aria-label="Un grupo de filas con cinco bloques de columna. Solo los bloques A, C y E se necesitan y se descargan con tres peticiones por rango simultáneas hacia el lector." font-family="'IBM Plex Sans', system-ui, sans-serif">
+<defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1E4FD8"></path></marker></defs>
+<g font-size="13" fill="#3D4C62">
+<text x="20" y="34" font-weight="600" fill="#0E1A2B">Grupo de</text>
+<text x="20" y="52" font-weight="600" fill="#0E1A2B">filas 1</text>
+<rect x="130" y="18" width="100" height="40" rx="6" fill="#1E4FD8"></rect><text x="180" y="43" text-anchor="middle" fill="#FFFFFF" font-weight="600">A</text>
+<rect x="234" y="18" width="76" height="40" rx="6" fill="#E3E8EF"></rect><text x="272" y="43" text-anchor="middle">B</text>
+<rect x="314" y="18" width="106" height="40" rx="6" fill="#1E4FD8"></rect><text x="367" y="43" text-anchor="middle" fill="#FFFFFF" font-weight="600">C</text>
+<rect x="424" y="18" width="56" height="40" rx="6" fill="#E3E8EF"></rect><text x="452" y="43" text-anchor="middle">D</text>
+<rect x="484" y="18" width="76" height="40" rx="6" fill="#1E4FD8"></rect><text x="522" y="43" text-anchor="middle" fill="#FFFFFF" font-weight="600">E</text>
+<rect x="590" y="22" width="12" height="12" rx="2" fill="#1E4FD8"></rect><text x="610" y="33" font-size="12">se lee</text>
+<rect x="590" y="42" width="12" height="12" rx="2" fill="#E3E8EF"></rect><text x="610" y="53" font-size="12">se omite</text>
+<g font-family="'IBM Plex Mono', monospace" font-size="12" fill="#1E4FD8">
+<text x="20" y="103">Range A</text>
+<text x="20" y="135">Range C</text>
+<text x="20" y="167">Range E</text>
+</g>
+<rect x="130" y="86" width="200" height="24" rx="5" fill="#1E4FD8"></rect><text x="142" y="103" fill="#FFFFFF" font-size="12">GET</text>
+<rect x="130" y="118" width="270" height="24" rx="5" fill="#1E4FD8"></rect><text x="142" y="135" fill="#FFFFFF" font-size="12">GET</text>
+<rect x="130" y="150" width="130" height="24" rx="5" fill="#1E4FD8"></rect><text x="142" y="167" fill="#FFFFFF" font-size="12">GET</text>
+<g stroke="#1E4FD8" stroke-width="1.5" stroke-dasharray="3 4">
+<line x1="334" y1="98" x2="684" y2="98" marker-end="url(#m2)"></line>
+<line x1="404" y1="130" x2="684" y2="130" marker-end="url(#m2)"></line>
+<line x1="264" y1="162" x2="684" y2="162" marker-end="url(#m2)"></line>
+</g>
+<text x="540" y="119" text-anchor="middle" font-weight="600" fill="#1E4FD8">3 descargas simultáneas</text>
+<line x1="130" y1="184" x2="560" y2="184" stroke="#6B7A90" stroke-width="1.5" marker-end="url(#m3)"></line>
+<text x="568" y="188" font-size="12">tiempo</text>
+<rect x="690" y="76" width="84" height="100" rx="8" fill="#0E1A2B"></rect>
+<text x="732" y="120" text-anchor="middle" fill="#FFFFFF" font-weight="600">Lector</text>
+<text x="732" y="138" text-anchor="middle" fill="#FFFFFF" font-size="12">bloques</text>
+</g>
+<defs><marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6B7A90"></path></marker></defs>
+</svg>

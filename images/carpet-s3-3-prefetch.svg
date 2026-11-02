@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784 192" role="img" aria-label="Línea de tiempo con dos carriles. Mientras la CPU decodifica el grupo de filas n, el carril de E/S descarga por adelantado el grupo n+1, de modo que ambos se solapan." font-family="'IBM Plex Sans', system-ui, sans-serif">
+<defs><marker id="m4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6B7A90"></path></marker></defs>
+<g font-size="13" fill="#3D4C62">
+<rect x="262" y="30" width="392" height="130" rx="8" fill="#F2B24C" fill-opacity="0.16" stroke="#8A5A00" stroke-width="1.5" stroke-dasharray="5 4"></rect>
+<text x="458" y="22" text-anchor="middle" font-weight="600" fill="#8A5A00">E/S y CPU trabajan a la vez</text>
+<text x="20" y="71" font-weight="600" fill="#0E1A2B">E/S</text>
+<text x="20" y="139" font-weight="600" fill="#0E1A2B">CPU</text>
+<rect x="130" y="44" width="128" height="44" rx="6" fill="#F2B24C"></rect><text x="194" y="71" text-anchor="middle" fill="#2B1B00" font-weight="600">Lectura 1</text>
+<rect x="262" y="44" width="128" height="44" rx="6" fill="#F2B24C"></rect><text x="326" y="71" text-anchor="middle" fill="#2B1B00" font-weight="600">Prefetch 2</text>
+<rect x="394" y="44" width="128" height="44" rx="6" fill="#F2B24C"></rect><text x="458" y="71" text-anchor="middle" fill="#2B1B00" font-weight="600">Prefetch 3</text>
+<rect x="526" y="44" width="128" height="44" rx="6" fill="#FFFFFF" stroke="#8A5A00" stroke-width="1.5" stroke-dasharray="5 4"></rect><text x="590" y="71" text-anchor="middle" fill="#8A5A00">Prefetch 4…</text>
+<text x="194" y="139" text-anchor="middle" font-style="italic">espera</text>
+<rect x="262" y="112" width="128" height="44" rx="6" fill="#1F2D4A"></rect><text x="326" y="139" text-anchor="middle" fill="#FFFFFF" font-weight="600">Decodifica 1</text>
+<rect x="394" y="112" width="128" height="44" rx="6" fill="#1F2D4A"></rect><text x="458" y="139" text-anchor="middle" fill="#FFFFFF" font-weight="600">Decodifica 2</text>
+<rect x="526" y="112" width="128" height="44" rx="6" fill="#1F2D4A"></rect><text x="590" y="139" text-anchor="middle" fill="#FFFFFF" font-weight="600">Decodifica 3</text>
+<text x="458" y="105" text-anchor="middle" font-size="12">columnas de n → rangos de n+1</text>
+<line x1="130" y1="178" x2="654" y2="178" stroke="#6B7A90" stroke-width="1.5" marker-end="url(#m4)"></line>
+<text x="662" y="182" font-size="12">tiempo</text>
+</g>
+</svg>
